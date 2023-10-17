@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Practica_1</string>
+    <string name="presencial">Presencial</string>
+    <string name="semipresencial">Semipresencial</string>
+    <string name="name">Name</string>
+    <string name="introduzca_el_nombre_del_alumno">Introduzca el nombre del alumno</string>
+    <string name="fecha_nac">Fecha nac:</string>
+    <string name="nombre">Nombre</string>
+    <string name="dia">Dia</string>
+    <string name="mes">Mes</string>
+    <string name="anyo">Año</string>
+    <string name="asir">ASIR</string>
+    <string name="dam">DAM</string>
+    <string name="daw">DAW</string>
+    <string name="obtener_datos">Obtener Datos</string>
+</resources>
