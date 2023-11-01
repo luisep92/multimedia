@@ -16,13 +16,12 @@ class ActivityAddStudent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setListeners()
     }
 
     // Función para el botón, hacemos las comprobaciones y si no hay nada raro mostramos los datos
     private fun setListeners(){
-        binding.buttonObtenerDatos.setOnClickListener{
+        binding.buttonAceptar.setOnClickListener{
             // Escondemos el teclado
             hideKeyboard()
             /* Limpio el texto para que al probar diferentes usuarios, si ponemos uno valido y
@@ -46,7 +45,7 @@ class ActivityAddStudent : AppCompatActivity() {
             }
 
             // Llegados aquí significa que no hay fallos, mostramos los datos
-            setTextToShow(getInformationString(date), binding.editTextNombre.text.toString())
+            setTextToShow(getInformationString(date), binding.textViewMostrarNombre.text.toString())
         }
     }
 
@@ -56,8 +55,8 @@ class ActivityAddStudent : AppCompatActivity() {
             return true
         if (isRadioGroupEmpty(binding.radioGroup2))
             return true
-        if (binding.editTextNombre.text.isEmpty())
-            return true
+//        if (binding.editTextNombre.text.isEmpty())
+//            return true
         if (binding.editTextDia.text.isEmpty())
             return true
         if (binding.editTextMes.text.isEmpty())
@@ -100,14 +99,14 @@ class ActivityAddStudent : AppCompatActivity() {
 
     // Texto de los datos a mostrar
     private fun setTextToShow(resultText: String, nameText: String){
-        binding.textViewResultado.text = resultText
+      //  binding.textViewResultado.text = resultText
         binding.textViewMostrarNombre.text = nameText
     }
 
     // Esconder el teclado
     private fun hideKeyboard() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.buttonObtenerDatos.windowToken, 0)
+        imm.hideSoftInputFromWindow(binding.buttonAceptar.windowToken, 0)
     }
 
     // Saber si no hay botones marcados en un radio group

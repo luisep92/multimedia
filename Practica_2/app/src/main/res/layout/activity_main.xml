@@ -119,7 +119,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
-        android:background="#F5EAEAEA"
+        android:background="#F2EAEAEA"
         app:layout_constraintBottom_toTopOf="@+id/buttonGuardar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
