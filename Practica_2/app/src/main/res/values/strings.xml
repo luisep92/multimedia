@@ -13,4 +13,10 @@
     <string name="dam">DAM</string>
     <string name="daw">DAW</string>
     <string name="obtener_datos">Obtener Datos</string>
+    <string name="fecha">Fecha: ?</string>
+    <string name="modalidad_ciclo">Modalidad: ? Ciclo: ?</string>
+    <string name="fecha_nac_date">Fecha Nac: %1$s</string>
+    <string name="modalidad_ciclo_2">Modalidad: %1$s, Ciclo: %2$s</string>
+    <string name="introduzca_los_datos_del_alumno">Introduzca los datos del alumno:\n%1$s</string>
+    <string name="faltan_datos">Hay campos sin datos introducidos</string>
 </resources>

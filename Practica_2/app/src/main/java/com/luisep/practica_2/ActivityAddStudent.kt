@@ -1,5 +1,7 @@
 package com.luisep.practica_2
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
@@ -16,20 +18,21 @@ class ActivityAddStudent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val name = intent.getStringExtra(MainActivity.EXTRA_ALUMNO)
+        binding.textViewNombre1.text = getString(R.string.introduzca_los_datos_del_alumno, name)
         setListeners()
     }
 
     // Función para el botón, hacemos las comprobaciones y si no hay nada raro mostramos los datos
     private fun setListeners(){
+        // BOTON ACEPTAR
         binding.buttonAceptar.setOnClickListener{
             // Escondemos el teclado
-            hideKeyboard()
-            /* Limpio el texto para que al probar diferentes usuarios, si ponemos uno valido y
-               luego uno inválido, se quite el anterior */
-            setTextToShow("", "")
+            Utils.hideKeyboard(this)
             // Si hay campos en blanco mostramos toast y salimos
             if(hasBlankFields()){
-                Toast.makeText(this, "Hay campos sin datos introducidos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.faltan_datos), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -39,13 +42,26 @@ class ActivityAddStudent : AppCompatActivity() {
                               binding.editTextaAnyo.text.toString().toInt())
 
             // Comprobamos fecha y si no es valida mostramos toast  y salimos
-            if (!date.isValid()) {
+            if (!date.isValid() || date.toAge() > 115) {
                 Toast.makeText(this, "Fecha inválida", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            // Llegados aquí significa que no hay fallos, mostramos los datos
-            setTextToShow(getInformationString(date), binding.textViewMostrarNombre.text.toString())
+            // Recogemos los datos del alumno actual y volvemos a la actividad anterior
+            val data = getInfo(date)
+            val intentResult: Intent = Intent().apply {
+                putExtra(MainActivity.EXTRA_DIA, data[0])
+                putExtra(MainActivity.EXTRA_MES, data[1])
+                putExtra(MainActivity.EXTRA_ANYO, data[2])
+                putExtra(MainActivity.EXTRA_MODALIDAD, data[3])
+                putExtra(MainActivity.EXTRA_CICLO, data[4])
+            }
+            setResult(Activity.RESULT_OK, intentResult)
+            finish()
+        }
+        //BOTON CANCELAR
+        binding.buttonCancelar.setOnClickListener{
+            setResult(Activity.RESULT_CANCELED)
+            finish()
         }
     }
 
@@ -55,8 +71,6 @@ class ActivityAddStudent : AppCompatActivity() {
             return true
         if (isRadioGroupEmpty(binding.radioGroup2))
             return true
-//        if (binding.editTextNombre.text.isEmpty())
-//            return true
         if (binding.editTextDia.text.isEmpty())
             return true
         if (binding.editTextMes.text.isEmpty())
@@ -66,47 +80,18 @@ class ActivityAddStudent : AppCompatActivity() {
         return false
     }
 
-    /* INFO GRUPOS POSIBLES
-    Presencial ASIR -     A / 101
-    Semipresencial ASIR - B / 102
-    Presencial DAW -      C / 201
-    Semipresencial DAW-   D / 202
-    Presencial DAM        E / 301
-    Semipresencial DAM    F / 302
-    */
 
-    // Texto con los datos que vamos a mostrar en el text view gris
-    private fun getInformationString(date: MyDate): String{
+    // Array con los datos necesarios del alumno
+    private fun getInfo(date: MyDate): Array<Int>{
         val presencial: Int = indexOfCheckedRadioButton(binding.radioGroup1)
         val group: Int = indexOfCheckedRadioButton(binding.radioGroup2)
-        var ret: String = "Edad: " + date.toAge() + "\n \n"
-        when(presencial to group){
-            0 to 0 -> ret += "Grupo A\n \nAula 101"
-            1 to 0 -> ret += "Grupo B\n \nAula 102"
-            0 to 1 -> ret += "Grupo C\n \nAula 201"
-            1 to 1 -> ret += "Grupo D\n \nAula 202"
-            0 to 2 -> ret += "Grupo E\n \nAula 301"
-            1 to 2 -> ret += "Grupo F\n \nAula 302"
-        }
-        return ret
+        return arrayOf(date.getDay(), date.getMonth(), date.getYear(), presencial, group)
     }
 
     // Devuelve el indice del radio button activo en un radio group
     private fun indexOfCheckedRadioButton(radioGroup: RadioGroup): Int {
         val btnId = radioGroup.checkedRadioButtonId
         return radioGroup.indexOfChild(radioGroup.findViewById(btnId))
-    }
-
-    // Texto de los datos a mostrar
-    private fun setTextToShow(resultText: String, nameText: String){
-      //  binding.textViewResultado.text = resultText
-        binding.textViewMostrarNombre.text = nameText
-    }
-
-    // Esconder el teclado
-    private fun hideKeyboard() {
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.buttonAceptar.windowToken, 0)
     }
 
     // Saber si no hay botones marcados en un radio group

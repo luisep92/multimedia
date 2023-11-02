@@ -16,6 +16,25 @@ class MyDate(day: Int, month: Int, year: Int) {
         setYear(year)
     }
 
+    companion object{
+        fun monthToString(month: Int): String {
+            when(month){
+                1 -> return "Enero"
+                2 -> return "Febrero"
+                3 -> return "Marzo"
+                4 -> return "Abril"
+                5 -> return "Mayo"
+                6 -> return "Junio"
+                7 -> return "Julio"
+                8 -> return "Agosto"
+                9 -> return "Septiembre"
+                10 -> return "Octubre"
+                11 -> return "Noviembre"
+            }
+            return "Diciembre"
+        }
+    }
+
     fun getDay(): Int {
         return day
     }
