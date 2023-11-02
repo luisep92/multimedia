@@ -5,17 +5,19 @@
     android:id="@+id/cv_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="7dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="15dp"
     android:layout_marginEnd="10dp"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardBackgroundColor="#F898AF"
-    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="10dp"
     app:cardElevation="5dp">
 
     <LinearLayout
+        android:id="@+id/linearLayoutMain"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="#F37070"
         android:orientation="horizontal"
         android:weightSum="6">
 

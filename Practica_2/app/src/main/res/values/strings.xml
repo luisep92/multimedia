@@ -19,4 +19,5 @@
     <string name="modalidad_ciclo_2">Modalidad: %1$s, Ciclo: %2$s</string>
     <string name="introduzca_los_datos_del_alumno">Introduzca los datos del alumno:\n%1$s</string>
     <string name="faltan_datos">Hay campos sin datos introducidos</string>
+    <string name="ordenar_lista">Ordenar lista</string>
 </resources>

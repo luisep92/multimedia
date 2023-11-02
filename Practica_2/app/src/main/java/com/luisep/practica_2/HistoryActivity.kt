@@ -9,17 +9,28 @@ import com.luisep.practica_2.databinding.ActivityHistoryBinding
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
+import java.util.Locale
 
 // Luis Escolano Piquer
 
 class HistoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryBinding
     private lateinit var myAdapter: RegistryAdapter
+    private var order = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpRecyclerView()
+        binding.floatingActionButton.setOnClickListener {
+            if(order){
+                myAdapter.myRegistries.sortBy { it.course }
+            }
+            else
+                myAdapter.myRegistries.sortBy { it.name.lowercase() }
+            myAdapter.notifyDataSetChanged()
+            order = !order
+        }
     }
 
     private fun setUpRecyclerView() {

@@ -45,7 +45,7 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
             binding.txtAnyo.text = registry.year.toString()
             binding.txtMes.text = MyDate.monthToString(registry.month)
             binding.txtModalidad.text = Utils.getMode(registry.modality)
-            binding.cvItem.setBackgroundColor(getColor(registry.course, context))
+            binding.linearLayoutMain.setBackgroundColor(getColor(registry.course, context))
             itemView.setOnClickListener {
                 val date = MyDate(registry.day, registry.month, registry.year)
                 val str = Utils.getInformationString(date, registry.modality, registry.course, false)
