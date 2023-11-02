@@ -9,8 +9,12 @@ import androidx.core.content.ContextCompat.getSystemService
 import java.io.IOException
 import java.io.OutputStreamWriter
 
+// Luis Escolano Piquer
+
 class Utils {
+    // Companion object porque necesito que las funciones sean estáticas
     companion object{
+        // Informacion del alumno, tiene un booleano para añadir o no la edad para poder reusarlo
         fun getInformationString(date: MyDate, presencial: Int, group: Int, age: Boolean): String{
             var ret : String
             ret = if(age)
@@ -28,6 +32,7 @@ class Utils {
             return ret
         }
 
+        //
         fun getMode(mode: Int?): String {
             if(mode == 0)
                 return "Presencial"

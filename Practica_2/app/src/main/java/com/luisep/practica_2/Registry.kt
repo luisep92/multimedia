@@ -23,6 +23,7 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
         myRegistries = registryList
         myContext = context
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegistryViewHolder {
         val view = LayoutInflater
             .from(parent.context)
@@ -33,12 +34,17 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
         val item = myRegistries.get(position)
         holder.bind(item, myContext)
     }
+
+    // Numero de registros en la lista
     override fun getItemCount(): Int {
         return myRegistries.size
     }
+
+    // Aqui de bindean cada registro con su layout
     class RegistryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemStudentListBinding.bind(view)
         fun bind(registry: Registry, context: Context) {
+            // Rellenamos los datos del layout y cambiamos su color segun el curso
             binding.txtDia.text = registry.day.toString()
             binding.txtCurso.text = Utils.getCiclo(registry.course)
             binding.txtNombre.text = registry.name
@@ -46,6 +52,7 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
             binding.txtMes.text = MyDate.monthToString(registry.month)
             binding.txtModalidad.text = Utils.getMode(registry.modality)
             binding.linearLayoutMain.setBackgroundColor(getColor(registry.course, context))
+            // Efecto en onclick
             itemView.setOnClickListener {
                 val date = MyDate(registry.day, registry.month, registry.year)
                 val str = Utils.getInformationString(date, registry.modality, registry.course, false)
@@ -53,6 +60,8 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
             }
 
         }
+
+        // Color segun el curso al que pertenece un alumno
         fun getColor(course: Int, con: Context): Int {
             val c: Int
             when (course) {

@@ -11,7 +11,7 @@ import com.luisep.practica_2.databinding.ActivityMainBinding
 import java.io.IOException
 import java.io.OutputStreamWriter
 
-
+// Luis Escolano Piquer
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         // BOTON LEER DATOS - Nos lleva a la segunda actividad
         binding.buttonLeerDatos.setOnClickListener {
             if(binding.editTextNombreAlu.text.isBlank()){
-                Toast.makeText(this, "El campo de nombre está vacío", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.falta_nombre), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             openSecondActivity()
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // abre la actividad para rellenar los datos del alumno
+    // Abre la actividad para rellenar los datos del alumno
     fun openSecondActivity(){
         val myIntent = Intent(this, ActivityAddStudent::class.java).apply {
             putExtra(EXTRA_ALUMNO, binding.editTextNombreAlu.text.toString())

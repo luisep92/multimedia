@@ -13,6 +13,8 @@ import java.util.Locale
 
 // Luis Escolano Piquer
 
+
+// Actividad donde se muestra la lista de alumnos
 class HistoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryBinding
     private lateinit var myAdapter: RegistryAdapter
@@ -22,6 +24,7 @@ class HistoryActivity : AppCompatActivity() {
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpRecyclerView()
+        // BOTON ORDENAR
         binding.floatingActionButton.setOnClickListener {
             if(order){
                 myAdapter.myRegistries.sortBy { it.course }
@@ -33,6 +36,7 @@ class HistoryActivity : AppCompatActivity() {
         }
     }
 
+    // Configurar recycler view
     private fun setUpRecyclerView() {
         binding.recyclerViewRegistries.setHasFixedSize(true)
         binding.recyclerViewRegistries.layoutManager = LinearLayoutManager(this)

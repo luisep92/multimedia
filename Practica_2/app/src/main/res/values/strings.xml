@@ -20,4 +20,5 @@
     <string name="introduzca_los_datos_del_alumno">Introduzca los datos del alumno:\n%1$s</string>
     <string name="faltan_datos">Hay campos sin datos introducidos</string>
     <string name="ordenar_lista">Ordenar lista</string>
+    <string name="falta_nombre">El campo de nombre está vacío</string>
 </resources>
