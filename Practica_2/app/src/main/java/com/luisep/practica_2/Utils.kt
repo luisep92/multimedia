@@ -3,11 +3,6 @@ package com.luisep.practica_2
 import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
-import java.io.IOException
-import java.io.OutputStreamWriter
 
 // Luis Escolano Piquer
 
@@ -32,7 +27,7 @@ class Utils {
             return ret
         }
 
-        //
+        // Presencial o semipresencial segun un entero
         fun getMode(mode: Int?): String {
             if(mode == 0)
                 return "Presencial"
@@ -42,6 +37,7 @@ class Utils {
                 return "?"
         }
 
+        // Nombre del ciclo segun un entero
         fun getCiclo(ciclo: Int?): String {
             if(ciclo == 0)
                 return "ASIR"

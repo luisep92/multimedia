@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.luisep.practica_2.Utils.Companion.getCiclo
 import com.luisep.practica_2.Utils.Companion.getMode
 import com.luisep.practica_2.databinding.ActivityMainBinding
 import java.io.IOException
@@ -15,8 +16,7 @@ import java.io.OutputStreamWriter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var studentData: Array<Int>
-    private lateinit var studentName: String
+    private lateinit var currentStudent: Registry
     companion object{
         const val TAG_APP = "practica_2"
         const val EXTRA_ALUMNO = "myAlumno"
@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity() {
         }
         //BOTON OBTENER EDAD Y GRUPO - Mostramos texto y activamos el siguiente boton
         binding.buttonObtenerEdadGrupo.setOnClickListener {
-            val date = MyDate(studentData[0], studentData[1], studentData[2])
-            binding.textViewDatos.text = Utils.getInformationString(date, studentData[3], studentData[4], true)
+            val date = MyDate(currentStudent.day, currentStudent.month, currentStudent.year)
+            binding.textViewDatos.text = Utils.getInformationString(date, currentStudent.modality, currentStudent.course, true)
             binding.buttonGuardar.isEnabled = true
             Utils.hideKeyboard(this)
         }
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Abre la actividad para rellenar los datos del alumno
-    fun openSecondActivity(){
+    private fun openSecondActivity(){
         val myIntent = Intent(this, ActivityAddStudent::class.java).apply {
             putExtra(EXTRA_ALUMNO, binding.editTextNombreAlu.text.toString())
         }
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Abre la actividad con la lista de alumnos
-    fun openHistoryActivity(){
+    private fun openHistoryActivity(){
         val intent = Intent(this, HistoryActivity::class.java)
         startActivity(intent)
     }
@@ -94,25 +94,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Guardamos los datos que vienen de la segunda actividad
-    fun setData(it: androidx.activity.result.ActivityResult) {
+    private fun setData(it: androidx.activity.result.ActivityResult) {
         val day = it.data!!.getIntExtra(EXTRA_DIA, -1)
         val month = it.data!!.getIntExtra(EXTRA_MES, -1)
         val year = it.data!!.getIntExtra(EXTRA_ANYO, -1)
         val mod = it.data!!.getIntExtra(EXTRA_MODALIDAD, -1)
         val course = it.data!!.getIntExtra(EXTRA_CICLO, -1)
-        studentData = arrayOf(day, month, year, mod, course)
-        studentName = it.data!!.getStringExtra(EXTRA_ALUMNO).toString()
+        val name = it.data!!.getStringExtra(EXTRA_ALUMNO).toString()
+        currentStudent = Registry(day, month, year, name, mod, course)
     }
 
     //Actualiza los textos correspondientes cuando vuelves de las segunda actividad
     fun setTexts(){
-        val date = MyDate(studentData[0], studentData[1], studentData[2])
+        val date = MyDate(currentStudent.day, currentStudent.month, currentStudent.year)
         binding.textViewFechaNac.text = getString(R.string.fecha_nac_date, date)
         binding.textViewModCiclo.text =
             getString(
                 R.string.modalidad_ciclo_2,
-                getMode(studentData[3]),
-                Utils.getCiclo(studentData[4])
+                getMode(currentStudent.modality),
+                getCiclo(currentStudent.course)
             )
     }
 
@@ -134,12 +134,12 @@ class MainActivity : AppCompatActivity() {
     //Añade en nuestro archivo el estudiante actual
     private fun addRegistry(){
 
-        val str = "" + studentData[0] + ";" +
-                        studentData[1] + ";" +
-                        studentData[2] + ";" +
+        val str = "" + currentStudent.day + ";" +
+                        currentStudent.month + ";" +
+                        currentStudent.year + ";" +
                         binding.editTextNombreAlu.text.toString() + ";" +
-                        studentData[3] + ";" +
-                        studentData[4]
+                        currentStudent.modality + ";" +
+                        currentStudent.course
 
         writeInFile(str)
     }

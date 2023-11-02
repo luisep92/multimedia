@@ -1,6 +1,5 @@
 package com.luisep.practica_2
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import com.luisep.practica_2.databinding.ItemStudentListBinding
 
 // Data class del registro del estudiante
 data class Registry(val day: Int, val month: Int, val year: Int, val name: String, val modality: Int, val course: Int)
+
 
 class RegistryAdapter(registryList: MutableList<Registry>, context: Context): RecyclerView.Adapter<RegistryAdapter.RegistryViewHolder>() {
     var myRegistries: MutableList<Registry>
@@ -40,7 +40,7 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
         return myRegistries.size
     }
 
-    // Aqui de bindean cada registro con su layout
+    // Aqui se bindean cada registro con su layout
     class RegistryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemStudentListBinding.bind(view)
         fun bind(registry: Registry, context: Context) {
@@ -52,7 +52,7 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
             binding.txtMes.text = MyDate.monthToString(registry.month)
             binding.txtModalidad.text = Utils.getMode(registry.modality)
             binding.linearLayoutMain.setBackgroundColor(getColor(registry.course, context))
-            // Efecto en onclick
+            // Efecto en onclick - saca un toast
             itemView.setOnClickListener {
                 val date = MyDate(registry.day, registry.month, registry.year)
                 val str = Utils.getInformationString(date, registry.modality, registry.course, false)
