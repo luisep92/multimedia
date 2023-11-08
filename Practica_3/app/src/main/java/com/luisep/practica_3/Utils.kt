@@ -2,6 +2,7 @@ package com.luisep.practica_3
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 
 // Luis Escolano Piquer
@@ -50,14 +51,10 @@ class Utils {
 
 
         // Esconder el teclado
-        fun hideKeyboard(activity: Activity) {
+        fun View.hideKeyboard() {
             val inputMethodManager =
-                activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-            val currentFocusView = activity.currentFocus
-            if (currentFocusView != null) {
-                inputMethodManager.hideSoftInputFromWindow(currentFocusView.windowToken, 0)
-            }
+                context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
         }
     }
 }

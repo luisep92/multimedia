@@ -28,7 +28,7 @@ class ActivityAddStudent : AppCompatActivity() {
         // BOTON ACEPTAR
         binding.buttonAceptar.setOnClickListener{
             // Escondemos el teclado
-            Utils.hideKeyboard(this)
+            //TODO:.hideKeboard()
             // Si hay campos en blanco mostramos toast y salimos
             if(hasBlankFields()){
                 Toast.makeText(this, getString(R.string.faltan_datos), Toast.LENGTH_SHORT).show()

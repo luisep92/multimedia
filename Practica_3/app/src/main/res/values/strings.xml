@@ -21,4 +21,6 @@
     <string name="faltan_datos">Hay campos sin datos introducidos</string>
     <string name="ordenar_lista">Ordenar lista</string>
     <string name="falta_nombre">El campo de nombre está vacío</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
