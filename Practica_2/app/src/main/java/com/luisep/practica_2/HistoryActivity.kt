@@ -1,6 +1,5 @@
 package com.luisep.practica_2
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -9,7 +8,6 @@ import com.luisep.practica_2.databinding.ActivityHistoryBinding
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.util.Locale
 
 // Luis Escolano Piquer
 
@@ -23,12 +21,12 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setUpRecyclerView()
-        // BOTON ORDENAR
+        // BOTON ORDENAR - Alterna entre ordenar por ciclos o por nombre de alumno
         binding.floatingActionButton.setOnClickListener {
-            if(order){
+            if(order)
                 myAdapter.myRegistries.sortBy { it.course }
-            }
             else
                 myAdapter.myRegistries.sortBy { it.name.lowercase() }
             myAdapter.notifyDataSetChanged()
@@ -45,6 +43,7 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     // Devuelve una lista de registros leyendo los datos de nuestro archivo
+    // Si no existe el archivo saca un toast diciendo que no hay datos
     private fun readRegistry(): ArrayList<Registry> {
         val ret = ArrayList<Registry>()
         val file = "registry.txt"
@@ -72,10 +71,8 @@ class HistoryActivity : AppCompatActivity() {
                 Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
             }
         } else {
-            Toast.makeText(this, "Todavía no hay datos", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.sin_datos), Toast.LENGTH_LONG).show()
         }
         return ret
     }
-
-
 }
