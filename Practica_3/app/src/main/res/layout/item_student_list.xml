@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginEnd="10dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutMain"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#F37070"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/txtMes"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="-5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:gravity="bottom|center"
+                android:text="September"
+                android:textAlignment="gravity"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txtDia"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_black"
+                android:text="27"
+                android:textAlignment="center"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/txtAnyo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:gravity="center|top"
+                android:text="2000"
+                android:textAlignment="gravity"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_black"
+                android:gravity="bottom|center"
+                android:text="Pepe Viyuela"
+                android:textAlignment="gravity"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txtModalidad"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center|top"
+                android:text="(Semipresencial)"
+                android:textAlignment="gravity"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtCurso"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_black"
+            android:gravity="center"
+            android:text="ASIR"
+            android:textAlignment="gravity"
+            android:textSize="24sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

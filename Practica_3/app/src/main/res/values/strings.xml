@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Practica_3</string>
+    <string name="presencial">Presencial</string>
+    <string name="semipresencial">Semipresencial</string>
+    <string name="name">Name</string>
+    <string name="introduzca_el_nombre_del_alumno">Introduzca el nombre del alumno</string>
+    <string name="fecha_nac">Fecha nac:</string>
+    <string name="nombre">Nombre</string>
+    <string name="dia">Dia</string>
+    <string name="mes">Mes</string>
+    <string name="anyo">Año</string>
+    <string name="asir">ASIR</string>
+    <string name="dam">DAM</string>
+    <string name="daw">DAW</string>
+    <string name="obtener_datos">Obtener Datos</string>
+    <string name="fecha">Fecha: ?</string>
+    <string name="modalidad_ciclo">Modalidad: ? Ciclo: ?</string>
+    <string name="fecha_nac_date">Fecha Nac: %1$s</string>
+    <string name="modalidad_ciclo_2">Modalidad: %1$s, Ciclo: %2$s</string>
+    <string name="introduzca_los_datos_del_alumno">Introduzca los datos del alumno:\n%1$s</string>
+    <string name="faltan_datos">Hay campos sin datos introducidos</string>
+    <string name="ordenar_lista">Ordenar lista</string>
+    <string name="falta_nombre">El campo de nombre está vacío</string>
+</resources>
