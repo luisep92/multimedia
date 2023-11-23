@@ -1,6 +1,7 @@
 package com.luisep.practica_3
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,9 +54,15 @@ class RegistryAdapter(registryList: MutableList<Registry>, context: Context): Re
             binding.linearLayoutMain.setBackgroundColor(getColor(registry.course, context))
             // Efecto en onclick
             itemView.setOnClickListener {
-                val date = MyDate(registry.day, registry.month, registry.year)
-                val str = Utils.getInformationString(date, registry.modality, registry.course, false)
-                Toast.makeText(context, str, Toast.LENGTH_LONG).show()
+                val intent = Intent(context, StudentInfoActivity::class.java).apply {
+                    putExtra(MainActivity.EXTRA_ALUMNO, binding.txtNombre.text.toString())
+                    putExtra(MainActivity.EXTRA_ANYO, binding.txtAnyo.text.toString())
+                    putExtra(MainActivity.EXTRA_DIA, binding.txtDia.text.toString())
+                    putExtra(MainActivity.EXTRA_MES, binding.txtMes.text.toString())
+                    putExtra(MainActivity.EXTRA_CICLO, binding.txtCurso.text.toString())
+                    putExtra(MainActivity.EXTRA_MODALIDAD, binding.txtModalidad.text.toString())
+                }
+                context.startActivity(intent)
             }
 
         }

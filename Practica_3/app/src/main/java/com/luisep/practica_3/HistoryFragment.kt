@@ -16,11 +16,24 @@ import java.io.InputStreamReader
 class HistoryFragment: Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var myAdapter: RegistryAdapter
+    private var order = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHistoryBinding.inflate(inflater)
-        //setListeners()
+
+        // BOTON ORDENAR
+        binding.floatingActionButton.setOnClickListener {
+            if(order){
+                // Ordenar por curso
+                myAdapter.myRegistries.sortBy { it.course }
+            }
+            else
+                // Ordenar por nombre
+                myAdapter.myRegistries.sortBy { it.name.lowercase() }
+            myAdapter.notifyDataSetChanged()
+            order = !order
+        }
 
         return binding.root
     }

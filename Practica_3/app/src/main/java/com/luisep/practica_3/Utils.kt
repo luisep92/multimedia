@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
 
 // Luis Escolano Piquer
 
@@ -49,6 +50,41 @@ class Utils {
                 return "?"
         }
 
+        fun getGroup(group: String, modality: String): String{
+            return when(modality to group){
+                "Presencial"     to "ASIR" -> "Grupo A"
+                "Semipresencial" to "ASIR" -> "Grupo B"
+                "Presencial"     to "DAW" -> "Grupo C"
+                "Semipresencial" to "DAW" -> "Grupo D"
+                "Presencial"     to "DAM" -> "Grupo E"
+                "Semipresencial" to "DAM" -> "Grupo F"
+                else -> "ERROR"
+            }
+        }
+
+        fun getClass(group: String, modality: String): String{
+            return when(modality to group){
+                "Presencial"     to "ASIR" -> "Aula 101"
+                "Semipresencial" to "ASIR" -> "Aula 102"
+                "Presencial"     to "DAW" -> "Aula 201"
+                "Semipresencial" to "DAW" -> "Aula 202"
+                "Presencial"     to "DAM" -> "Aula 301"
+                "Semipresencial" to "DAM" -> "Aula 302"
+                else -> "ERROR"
+            }
+        }
+
+        // Color segun el curso al que pertenece un alumno
+        fun getColorFromCourse(course: String, con: Context): Int {
+            val c: Int
+            when (course) {
+                "ASIR" -> c = R.color.red
+                "DAW" -> c = R.color.blue
+                "DAM" -> c = R.color.green
+                else -> c = R.color.white
+            }
+            return ContextCompat.getColor(con, c)
+        }
 
         // Esconder el teclado
         fun View.hideKeyboard() {

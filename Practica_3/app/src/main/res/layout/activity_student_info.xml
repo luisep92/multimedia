@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StudentInfoActivity">
+
+    <TextView
+        android:id="@+id/textViewInfoNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="Nombre Alumno"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewInfoFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="31 de Enero de 2023"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewInfoNombre"
+        app:layout_constraintStart_toStartOf="@+id/textViewInfoNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInfoNombre" />
+
+    <TextView
+        android:id="@+id/textViewInfoGrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="Grupo Z"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewInfoFecha"
+        app:layout_constraintStart_toStartOf="@+id/textViewInfoFecha"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInfoFecha" />
+
+    <TextView
+        android:id="@+id/textViewInfoAula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="Aula 13"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewInfoGrupo"
+        app:layout_constraintStart_toStartOf="@+id/textViewInfoGrupo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInfoGrupo" />
+
+    <TextView
+        android:id="@+id/textViewCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="ASIR (Semipresencial)"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewInfoAula"
+        app:layout_constraintStart_toStartOf="@+id/textViewInfoAula"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInfoAula" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,7 @@ class ActivityAddStudent : AppCompatActivity() {
         setContentView(binding.root)
 
         val name = intent.getStringExtra(MainActivity.EXTRA_ALUMNO)
+        Toast.makeText(this, name, Toast.LENGTH_LONG).show()
         binding.textViewNombre1.text = getString(R.string.introduzca_los_datos_del_alumno, name)
         setListeners()
     }

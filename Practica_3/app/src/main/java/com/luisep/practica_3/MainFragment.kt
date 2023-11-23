@@ -1,7 +1,10 @@
 package com.luisep.practica_3
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -78,19 +81,39 @@ class MainFragment : Fragment() {
         }
         // BOTON GUARDAR - Guardamos el registro y limpiamos los campos
         binding.buttonGuardar.setOnClickListener {
-            addRegistry()
-            binding.editTextNombreAlu.text.clear()
-            binding.textViewDatos.text = ""
-            binding.textViewFechaNac.text = getString(R.string.fecha)
-            binding.textViewModCiclo.text = getString(R.string.modalidad_ciclo)
-            binding.buttonObtenerEdadGrupo.isEnabled = false
-            binding.buttonGuardar.isEnabled = false
+            myAlertDialog("¿Desea guardar la información obtenida para el histórico?")
         }
-        //BOTON VER HISTORICO
-        //  binding.buttonHistorico.setOnClickListener {
-        //     openHistoryActivity()
-        //}
     }
+
+    private fun myAlertDialog(message: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setTitle("Histórico")
+            setMessage(message)
+            setPositiveButton(
+                "Aceptar",
+                DialogInterface.OnClickListener(function = btnAddRegistry)
+            )
+            setNegativeButton(android.R.string.cancel) { _, _ ->
+                Toast.makeText(context, "Cancelado", Toast.LENGTH_SHORT).show()
+            }
+        }
+        builder.show()
+    }
+
+
+    private val btnAddRegistry = { dialog: DialogInterface, which: Int ->
+        addRegistry()
+        binding.editTextNombreAlu.text.clear()
+        binding.textViewDatos.text = ""
+        binding.textViewFechaNac.text = getString(R.string.fecha)
+        binding.textViewModCiclo.text = getString(R.string.modalidad_ciclo)
+        binding.buttonObtenerEdadGrupo.isEnabled = false
+        binding.buttonGuardar.isEnabled = false
+    }
+
+
+
     fun openSecondActivity(){
         val myIntent = Intent(context, ActivityAddStudent::class.java).apply {
             putExtra(MainActivity.EXTRA_ALUMNO, binding.editTextNombreAlu.text.toString())
@@ -117,7 +140,6 @@ class MainFragment : Fragment() {
         val mod = it.data!!.getIntExtra(MainActivity.EXTRA_MODALIDAD, -1)
         val course = it.data!!.getIntExtra(MainActivity.EXTRA_CICLO, -1)
         studentData = arrayOf(day, month, year, mod, course)
-        studentName = it.data!!.getStringExtra(MainActivity.EXTRA_ALUMNO).toString()
     }
 
     //Actualiza los textos correspondientes cuando vuelves de las segunda actividad
