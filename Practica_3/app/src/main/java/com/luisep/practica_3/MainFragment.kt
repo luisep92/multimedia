@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,35 +14,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.luisep.practica_3.Utils.Companion.hideKeyboard
-import com.luisep.practica_3.databinding.ActivityMainBinding
 import com.luisep.practica_3.databinding.FragmentMainBinding
 import java.io.IOException
 import java.io.OutputStreamWriter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+// Luis Escolano Piquer
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private lateinit var binding: FragmentMainBinding
-    private var param1: String? = null
-    private var param2: String? = null
     private lateinit var studentData: Array<Int>
-    private lateinit var studentName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,17 +34,6 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    companion object {
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
     fun setListeners(){
         // BOTON LEER DATOS - Nos lleva a la segunda actividad
         binding.buttonLeerDatos.setOnClickListener {
@@ -79,12 +50,13 @@ class MainFragment : Fragment() {
             binding.buttonGuardar.isEnabled = true
             requireView().hideKeyboard()
         }
-        // BOTON GUARDAR - Guardamos el registro y limpiamos los campos
+        // BOTON GUARDAR - Lanzamos el alert dialog para guardar estudiante
         binding.buttonGuardar.setOnClickListener {
-            myAlertDialog("¿Desea guardar la información obtenida para el histórico?")
+            myAlertDialog(getString(R.string.confirmar_guardar_estudiante))
         }
     }
 
+    // Lanza el alert dialog para confirmar si desea añadir el estudiante
     private fun myAlertDialog(message: String) {
         val builder = AlertDialog.Builder(requireContext())
         builder.apply {
@@ -101,7 +73,7 @@ class MainFragment : Fragment() {
         builder.show()
     }
 
-
+    // Añade un registro al fichero y limpia los campos
     private val btnAddRegistry = { dialog: DialogInterface, which: Int ->
         addRegistry()
         binding.editTextNombreAlu.text.clear()
@@ -113,7 +85,7 @@ class MainFragment : Fragment() {
     }
 
 
-
+    // Abre la actividad de añadir los datos del estudiante
     fun openSecondActivity(){
         val myIntent = Intent(context, ActivityAddStudent::class.java).apply {
             putExtra(MainActivity.EXTRA_ALUMNO, binding.editTextNombreAlu.text.toString())
@@ -121,6 +93,7 @@ class MainFragment : Fragment() {
         getResult.launch(myIntent)
     }
 
+    // Recoge el resultado del intent de la actividad anterior
     private val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     {
         if (it.resultCode == Activity.RESULT_OK) {
@@ -133,6 +106,7 @@ class MainFragment : Fragment() {
         }
     }
 
+    // Guarda los datos del estudiante
     fun setData(it: androidx.activity.result.ActivityResult) {
         val day = it.data!!.getIntExtra(MainActivity.EXTRA_DIA, -1)
         val month = it.data!!.getIntExtra(MainActivity.EXTRA_MES, -1)

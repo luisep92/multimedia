@@ -23,4 +23,8 @@
     <string name="falta_nombre">El campo de nombre está vacío</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="confirmar_guardar_estudiante">¿Desea guardar la información obtenida para el histórico?</string>
+    <string name="no_hay_datos">Todavía no hay datos</string>
+    <string name="dia_mes_anyo">%1$s de %2$s de %3$s</string>
+    <string name="ciclo_modo">%1$s (%2$s)</string>
 </resources>

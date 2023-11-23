@@ -5,6 +5,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
+// Luis Escolano Piquer
+
 class ViewpagerMainAdapter (fragmentManager: FragmentManager, lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager, lifecycle) {
     private val mFragmentList = ArrayList<Fragment>()
     private val mFragmentTitleList = ArrayList<String>()
@@ -21,5 +23,4 @@ class ViewpagerMainAdapter (fragmentManager: FragmentManager, lifecycle: Lifecyc
     fun getPageTitle(position: Int): CharSequence? {
         return mFragmentTitleList[position]
     }
-
 }

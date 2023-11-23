@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.luisep.practica_3.databinding.ActivityAddStudentBinding
 import java.util.Calendar
 
@@ -23,7 +22,6 @@ class ActivityAddStudent : AppCompatActivity() {
         setContentView(binding.root)
 
         val name = intent.getStringExtra(MainActivity.EXTRA_ALUMNO)
-        Toast.makeText(this, name, Toast.LENGTH_LONG).show()
         binding.textViewNombre1.text = getString(R.string.introduzca_los_datos_del_alumno, name)
         setListeners()
     }
@@ -32,9 +30,6 @@ class ActivityAddStudent : AppCompatActivity() {
     private fun setListeners(){
         // BOTON ACEPTAR
         binding.buttonAceptar.setOnClickListener{
-            // Escondemos el teclado
-            //TODO:.hideKeboard()
-            // Si hay campos en blanco mostramos toast y salimos
             if(hasBlankFields()){
                 Toast.makeText(this, getString(R.string.faltan_datos), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -72,6 +67,7 @@ class ActivityAddStudent : AppCompatActivity() {
         }
     }
 
+    // Abre el datepicker y recoge la fecha seleccionada
     private fun setDate() {
         val cal = Calendar.getInstance()
         val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->

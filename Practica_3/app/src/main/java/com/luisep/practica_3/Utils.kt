@@ -1,6 +1,5 @@
 package com.luisep.practica_3
 
-import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -29,7 +28,7 @@ class Utils {
             return ret
         }
 
-        //
+        // Modo segun un entero
         fun getMode(mode: Int?): String {
             if(mode == 0)
                 return "Presencial"
@@ -39,6 +38,7 @@ class Utils {
                 return "?"
         }
 
+        // Ciclo segun un entero
         fun getCiclo(ciclo: Int?): String {
             if(ciclo == 0)
                 return "ASIR"
@@ -50,6 +50,7 @@ class Utils {
                 return "?"
         }
 
+        // Grupo segun el curso al que pertenece el alumno
         fun getGroup(group: String, modality: String): String{
             return when(modality to group){
                 "Presencial"     to "ASIR" -> "Grupo A"
@@ -62,6 +63,7 @@ class Utils {
             }
         }
 
+        // Clase segun el curso al que pertenece el alumno
         fun getClass(group: String, modality: String): String{
             return when(modality to group){
                 "Presencial"     to "ASIR" -> "Aula 101"

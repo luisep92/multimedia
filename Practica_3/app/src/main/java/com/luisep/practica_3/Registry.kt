@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.luisep.practica_3.databinding.ItemStudentListBinding
@@ -15,6 +14,7 @@ import com.luisep.practica_3.databinding.ItemStudentListBinding
 // Data class del registro del estudiante
 data class Registry(val day: Int, val month: Int, val year: Int, val name: String, val modality: Int, val course: Int)
 
+// Adapter de la clase Registry
 class RegistryAdapter(registryList: MutableList<Registry>, context: Context): RecyclerView.Adapter<RegistryAdapter.RegistryViewHolder>() {
     var myRegistries: MutableList<Registry>
     var myContext: Context

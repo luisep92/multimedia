@@ -13,6 +13,8 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
+// Luis Escolano Piquer
+
 class HistoryFragment: Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var myAdapter: RegistryAdapter
@@ -34,7 +36,6 @@ class HistoryFragment: Fragment() {
             myAdapter.notifyDataSetChanged()
             order = !order
         }
-
         return binding.root
     }
 
@@ -79,7 +80,7 @@ class HistoryFragment: Fragment() {
                 Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
             }
         } else {
-            Toast.makeText(requireContext(), "Todavía no hay datos", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), getString(R.string.no_hay_datos), Toast.LENGTH_LONG).show()
         }
         return ret
     }
