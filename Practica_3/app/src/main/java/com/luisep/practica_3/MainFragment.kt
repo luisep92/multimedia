@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.luisep.practica_3.Utils.Companion.hideKeyboard
+import com.luisep.practica_3.databinding.ActivityMainBinding
 import com.luisep.practica_3.databinding.FragmentMainBinding
 import java.io.IOException
 import java.io.OutputStreamWriter
@@ -41,23 +43,13 @@ class MainFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentMainBinding.inflate(inflater)
+        setListeners()
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainFragment.
-         */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
@@ -160,7 +152,7 @@ class MainFragment : Fragment() {
             salida.write(data + '\n')
             salida.flush()
             salida.close()
-            Toast.makeText(context, "Guardado correctamente", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "La información se ha registrado en el histórico", Snackbar.LENGTH_SHORT).show()
         } catch (e: IOException) {
             Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
         }

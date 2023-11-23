@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
+import com.google.android.material.tabs.TabLayoutMediator
 import com.luisep.practica_3.MainActivity.Companion.EXTRA_ALUMNO
 import com.luisep.practica_3.MainActivity.Companion.EXTRA_ANYO
 import com.luisep.practica_3.MainActivity.Companion.EXTRA_CICLO
@@ -35,5 +36,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val viewPager2 = binding.viewPager2
+        val adapter = ViewpagerMainAdapter(supportFragmentManager, lifecycle)
+        adapter.addFragment(MainFragment(), "Principal")
+        adapter.addFragment(HistoryFragment(), "Histórico")
+        viewPager2.adapter = adapter
+        TabLayoutMediator(binding.tabLayout, viewPager2){tab, position ->
+            tab.text = adapter.getPageTitle(position)}.attach()
     }
 }

@@ -4,7 +4,7 @@
     <string name="semipresencial">Semipresencial</string>
     <string name="name">Name</string>
     <string name="introduzca_el_nombre_del_alumno">Introduzca el nombre del alumno</string>
-    <string name="fecha_nac">Fecha nac:</string>
+    <string name="fecha_nac">Fecha nac: ? / ? / ?</string>
     <string name="nombre">Nombre</string>
     <string name="dia">Dia</string>
     <string name="mes">Mes</string>

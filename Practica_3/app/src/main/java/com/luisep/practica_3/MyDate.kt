@@ -98,12 +98,12 @@ class MyDate(day: Int, month: Int, year: Int) {
     // Da la edad desde una fecha hasta hoy
     fun toAge(): Int{
         val today: MyDate = today()
-        var hasPassedBirthday = 0
-        if (this.month > today.month)
-            hasPassedBirthday += 1
-        else if(this.month == today.month && this.day < today.day)
-            hasPassedBirthday += 1
-        return today.year - this.year - hasPassedBirthday
+
+        if (this.month < today.month || (this.month == today.month && this.day <= today.day)) {
+            return today.year - this.year
+        } else {
+            return today.year - this.year - 1
+        }
     }
 
     // Numero de dias de los meses

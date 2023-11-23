@@ -1,12 +1,16 @@
 package com.luisep.practica_3
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.luisep.practica_3.databinding.ActivityAddStudentBinding
+import java.util.Calendar
+
 
 // Luis Escolano Piquer
 
@@ -36,9 +40,8 @@ class ActivityAddStudent : AppCompatActivity() {
             }
 
             // Creamos fecha
-            val date = MyDate(binding.editTextDia.text.toString().toInt(),
-                              binding.editTextMes.text.toString().toInt(),
-                              binding.editTextaAnyo.text.toString().toInt())
+            val dmy = binding.textViewFecha.text.split("/")
+            val date = MyDate(dmy[0].toInt(), dmy[1].toInt(), dmy[2].toInt())
 
             // Comprobamos fecha y si no es valida mostramos toast  y salimos
             if (!date.isValid() || date.toAge() > 115) {
@@ -62,7 +65,30 @@ class ActivityAddStudent : AppCompatActivity() {
             setResult(Activity.RESULT_CANCELED)
             finish()
         }
+        //GET FECHA DATEPICKER
+        binding.textViewFecha.setOnClickListener{
+            setDate()
+        }
     }
+
+    private fun setDate() {
+        val cal = Calendar.getInstance()
+        val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, month)
+            cal.set(Calendar.DAY_OF_MONTH, day)
+            binding.textViewFecha.text =
+                "${cal.get(Calendar.DAY_OF_MONTH)}/${cal.get(Calendar.MONTH) + 1}/${cal.get(Calendar.YEAR)}"
+        }
+        DatePickerDialog(
+            this,
+            dateSetListener,
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
 
     // Comprobar datos en blanco
     private fun hasBlankFields(): Boolean {
@@ -70,11 +96,7 @@ class ActivityAddStudent : AppCompatActivity() {
             return true
         if (isRadioGroupEmpty(binding.radioGroup2))
             return true
-        if (binding.editTextDia.text.isEmpty())
-            return true
-        if (binding.editTextMes.text.isEmpty())
-            return true
-        if (binding.editTextaAnyo.text.isEmpty())
+        if (binding.textViewFecha.equals(R.string.fecha_nac))
             return true
         return false
     }
