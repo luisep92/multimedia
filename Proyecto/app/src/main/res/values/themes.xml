@@ -3,6 +3,7 @@
     <style name="Base.Theme.Proyecto" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/action_bar</item>
+        <item name="title">Juegos</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 

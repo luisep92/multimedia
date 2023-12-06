@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/optionDelete"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="Eliminar juego" />
+    <item
+        android:id="@+id/optionEdit"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Editar juego" />
+</menu>

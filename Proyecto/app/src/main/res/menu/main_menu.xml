@@ -4,6 +4,6 @@
     <item
         android:id="@+id/op01"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="@string/op1"
+        android:title="Añadir juego"
         app:showAsAction="ifRoom" />
 </menu>
