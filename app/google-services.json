@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "743885331884",
+    "project_id": "mi-proyecto-447e7",
+    "storage_bucket": "mi-proyecto-447e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743885331884:android:65f830454f6a4f331f6e09",
+        "android_client_info": {
+          "package_name": "com.luiescpiq.apuntes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdj--j9bFd72cGQ0ZbegXyHfZK1aPkPp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
