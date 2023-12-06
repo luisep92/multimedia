@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "861955670529",
+    "project_id": "proyecto-android-9a059",
+    "storage_bucket": "proyecto-android-9a059.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861955670529:android:ec0b4fae21ed235a377600",
+        "android_client_info": {
+          "package_name": "com.luiescpiq.proyecto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkSSvvjgTXPa_dHGRiryTWv0mX79aqGlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
