@@ -4,6 +4,8 @@ import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
+// Ya que se usa la conexión en varias actividades, usamos un singleton con la conexión
+// para que solo haya una.
 class Database {
     private val connection = FirebaseFirestore.getInstance()
 
@@ -13,7 +15,9 @@ class Database {
     companion object {
         val instance = Database()
     }
-    fun insertGame(name: String, genre: String, description: String, image: String, score: Float){
+
+    // Insertar juego, también la usamos para actualizar en caso de que exista la id.
+    fun insertGame(name: String, genre: String, description: String, image: String, score: Float, id: String){
         val game = hashMapOf(
             "name" to name,
             "category" to genre,
@@ -21,15 +25,25 @@ class Database {
             "image" to image,
             "score" to score
         )
-        connection.collection("Games").document().set(game)
-            .addOnSuccessListener {
-                Log.d("DOC_SET", "Added game succesfully.")
-            }
-            .addOnFailureListener { e ->
-                Log.w("DOC_SET", "Error inserting game.", e)
-            }
+        if (id.isNullOrBlank())
+            connection.collection("Games").document().set(game)
+                .addOnSuccessListener {
+                    Log.d("DOC_SET", "Added game succesfully.")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("DOC_SET", "Error inserting game.", e)
+                }
+        else
+            connection.collection("Games").document(id).set(game)
+                .addOnSuccessListener {
+                    Log.d("DOC_SET", "Updated game succesfully.")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("DOC_SET", "Error updating game.", e)
+                }
     }
 
+    // Llenamos el recycler view.
     fun addItemsToList(list: MutableList<MyGame>, adapter: GameAdapter) {
         val gamesCollection = connection.collection("Games")
         gamesCollection.addSnapshotListener { querySnapshot, firestoreException ->
@@ -52,6 +66,7 @@ class Database {
         }
     }
 
+    // Borrar juego.
     fun deleteItem(id: String) {
         val game = connection.collection("Games").document(id)
         game
