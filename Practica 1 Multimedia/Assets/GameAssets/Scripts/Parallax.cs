@@ -10,15 +10,16 @@ public class Parallax : MonoBehaviour
 
     private void Start()
     {
+        // Setup parallax
         tiles = GetTiles();
         height = tiles[0].GetComponent<SpriteRenderer>().size.y;
         SetInitialPositions(height);
-
         bottomPoint = tiles[0].position.y - height;
     }
      
     void Update()
     {
+        // Move tiles down, recolocate if needed.
         for(int i = 0; i < tiles.Length; i++)
         {
             float quantity = -speed * Time.deltaTime;
@@ -29,6 +30,7 @@ public class Parallax : MonoBehaviour
 
     }
 
+    // Sets the tiles in correct positions.
     private void SetInitialPositions(float height)
     {
         for (int i = 1; i < tiles.Length; i++)
@@ -38,6 +40,7 @@ public class Parallax : MonoBehaviour
         }
     }
 
+    // Get the list of tiles as transforms.
     private Transform[] GetTiles()
     {
         int size = transform.childCount;
@@ -49,11 +52,13 @@ public class Parallax : MonoBehaviour
         return ret;
     }
 
+    // Moves the tile to the top position
     private void MoveToTop(Transform tile, int index, float offset)
     {
         tile.position = new Vector3(tile.position.x, GetTopPosition(index) + height + offset, tile.position.z);
     }
 
+    // Get position on top of tiles.
     private float GetTopPosition(int index)
     {
         if(index == 0)

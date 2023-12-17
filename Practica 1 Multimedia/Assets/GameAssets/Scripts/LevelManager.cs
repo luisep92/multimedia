@@ -1,0 +1,86 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class LevelManager : MonoBehaviour
+{
+    [SerializeField] TMP_Text txtPhase;
+    public int wave = 0;
+    public List<GameObject> enemies;
+    List<GameObject[]> waves = new();
+    float sceneLimit;
+    
+
+
+    void Start()
+    {
+        txtPhase.gameObject.SetActive(false);
+        sceneLimit = GetLimits();
+        waves = GetWaves();
+        StartCoroutine(CheckPhaseEnded());
+    }
+
+
+
+    // Get limits of scene based in background image.
+    private float GetLimits()
+    {
+        return (GameObject.Find("Background_game").GetComponent<SpriteRenderer>().size.x / 2) - 1;
+    }
+
+    // Waves of enemies.
+    private List<GameObject[]> GetWaves()
+    {
+        List<GameObject[]> ret = new()
+        {
+            new GameObject[] { enemies[0], enemies[0], enemies[0] },
+            new GameObject[] { enemies[0], enemies[0], enemies[1], enemies[0], enemies[0] },
+            new GameObject[] { enemies[1], enemies[0], enemies[1], enemies[0], enemies[1] },
+            new GameObject[] { enemies[0], enemies[0], enemies[0], enemies[0], enemies[0], enemies[0], enemies[0], enemies[0] },
+            new GameObject[] { enemies[1], enemies[1], enemies[1], enemies[1], enemies[1] },
+        };
+        return ret;
+    }
+
+    // Instantiate enemies.
+    private void InstantiateWave()
+    {
+        GameObject[] currentWave = waves[wave];
+
+        for (int i = 0; i < currentWave.Length; i++)
+        {
+            float t = i / (float)(currentWave.Length - 1);
+            float posX = Mathf.Lerp(-sceneLimit, sceneLimit, t);
+            Vector3 pos = new(posX, 3.5f, 0);
+            Instantiate(currentWave[i], pos, Quaternion.Euler(0, 0, 180));
+        }
+        wave++;
+    }
+
+    // Plays text animation, then instance wave
+    private IEnumerator ChangePhase()
+    {
+        txtPhase.gameObject.SetActive(true);
+        txtPhase.text = "PHASE " + (wave + 1);
+        txtPhase.GetComponent<Animator>().Play("txtPhase");
+        yield return new WaitForSeconds(3.5f);
+        txtPhase.gameObject.SetActive(false);
+        InstantiateWave();
+    }
+
+    private bool PhaseEnded()
+    {
+        return GameObject.FindWithTag("Enemy") == null;
+    }
+
+    IEnumerator CheckPhaseEnded()
+    {
+        if (wave >= waves.Count)
+            yield return null;
+        if (PhaseEnded())
+            StartCoroutine(ChangePhase());
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(CheckPhaseEnded());
+    }
+}

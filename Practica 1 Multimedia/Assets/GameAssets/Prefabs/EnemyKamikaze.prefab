@@ -136,3 +136,5 @@ MonoBehaviour:
   dieParticle: {fileID: 946261759094494737, guid: e6557807313516a489548dbe9e67bb6e, type: 3}
   health: 1
   speed: 7
+  crosshair: {fileID: 8133438690172649336, guid: 7dc297d6d65cb964c9fceae60d5b84a8, type: 3}
+  target: {fileID: 0}

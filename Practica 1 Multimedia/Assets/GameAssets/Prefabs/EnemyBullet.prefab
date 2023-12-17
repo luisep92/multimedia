@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2626106981264432611}
   - component: {fileID: 8771328345636359965}
   - component: {fileID: 4850551202394119314}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyBullet
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,3 +187,4 @@ MonoBehaviour:
   - Enemy
   speed: 3
   damage: 1
+  hitParticle: {fileID: 5000497328069998879, guid: b67cb3bb7cd7be944ae9e76e5798e655, type: 3}

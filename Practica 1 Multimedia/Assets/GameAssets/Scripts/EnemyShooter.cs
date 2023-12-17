@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyShooter : Enemy
 {
     [SerializeField] GameObject bullet;
-    [SerializeField] protected float xMin = -7.25f;
-    [SerializeField] protected float xMax = 7.25f;
+    protected float xMin = -8.75f;
+    protected float xMax = 8.75f;
 
     private void Start()
     {
