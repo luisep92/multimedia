@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] TMP_Text txtPhase;
+    [SerializeField] TMP_Text txtScore;
     [SerializeField] GameObject meteorPref;
     [SerializeField] List<GameObject> enemies;
     public List<GameObject[]> waves = new();
@@ -96,5 +97,10 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(t);
         Instantiate(meteorPref, Vector3.zero, Quaternion.identity);
         StartCoroutine(SpawnMeteor());
+    }
+
+    public void Notify()
+    {
+        txtScore.text = "Score: " + GameManager.Instance.Score;
     }
 }

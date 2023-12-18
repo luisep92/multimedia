@@ -16,6 +16,17 @@ public class Player : MonoBehaviour, IDamageable
     private int currentHealth = 5;
     private List<GameObject> UIHealth = new();
 
+    private int CurrentHealth
+    {
+        get => currentHealth;
+        set
+        {
+            currentHealth = value;
+            if (value <= 0)
+                Die();
+        }
+    }
+
     private bool GodMode
     {
         get { return godMode; }
@@ -73,11 +84,14 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (GodMode)
             return;
-        // TODO: what if receives more than 1 damage?
-        UIHealth[maxHealth - currentHealth].SetActive(false);
-        currentHealth -= damage;
-        if (currentHealth <= 0)
-            Die();
+        for(int i = 0; i < damage; i++)
+        {
+            if(CurrentHealth > 0)
+            {
+                CurrentHealth -= 1;
+                UIHealth[maxHealth - CurrentHealth - 1].SetActive(false);
+            }
+        }
         StartCoroutine(EnterGodMode(2f));
     }
 

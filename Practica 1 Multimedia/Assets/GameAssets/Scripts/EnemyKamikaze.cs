@@ -75,7 +75,7 @@ public class EnemyKamikaze : Enemy
         // Deal damage if collision is IDamageable.
         IDamageable obj = collision.gameObject.GetComponent<IDamageable>();
         if (obj != null)
-            obj.GetDamage(1);
+            obj.GetDamage(2);
         if (obj is Player)
             GetDamage(health);
     } 
