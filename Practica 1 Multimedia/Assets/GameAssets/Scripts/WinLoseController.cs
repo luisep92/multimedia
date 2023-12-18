@@ -18,7 +18,7 @@ public class WinLoseController : MonoBehaviour
         txtScore.text = "Score: " + GameManager.Instance.Score;
         if (GameManager.Instance.IsPlayerAlive)
             return;
-        background.color = new Color(251, 147, 146, 1);
+        background. color = new Color(1f, 0.35f, 0.35f, 1);
         txtBtn.text = "Restart";
         txtMain.text = "YOU DIED";
     }
