@@ -64,11 +64,13 @@
     <Compile Include="Assets\GameAssets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Enemy.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Player.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\WinLoseController.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Meteor.cs" />
     <Compile Include="Assets\GameAssets\Scripts\EnemyShooter.cs" />
     <Compile Include="Assets\GameAssets\Scripts\PauseController.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Crosshair.cs" />
     <Compile Include="Assets\GameAssets\Scripts\MainMenuController.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\GameManager.cs" />
     <Compile Include="Assets\GameAssets\Scripts\EnemyKamikaze.cs" />
     <Compile Include="Assets\GameAssets\Scripts\IDamageable.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Parallax.cs" />

@@ -11,6 +11,7 @@ public class EnemyKamikaze : Enemy
 
     void Start()
     {
+        points = 15;
         SetCrosshair();
     }
 

@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected GameObject dieParticle;
     [SerializeField] protected int health = 3;
     [SerializeField] protected float speed = 7f;
+    protected int points = 10;
 
     protected abstract void Move();
 
@@ -29,5 +30,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected void ChangeColor(Color c)
     {
         GetComponent<SpriteRenderer>().material.color = c;
+    }
+
+    protected void OnDestroy()
+    {
+        GameManager.Instance.Score += points;
     }
 }

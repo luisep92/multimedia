@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.InitDefaultData();
         txtPhase.gameObject.SetActive(false);
         sceneLimit = GetLimits();
         waves = GetWaves();
@@ -57,7 +59,6 @@ public class LevelManager : MonoBehaviour
             Vector3 pos = new(posX, 3.5f, 0);
             Instantiate(currentWave[i], pos, Quaternion.Euler(0, 0, 180));
         }
-        wave++;
     }
 
     // Plays text animation, then instance wave
@@ -69,6 +70,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
         txtPhase.gameObject.SetActive(false);
         InstantiateWave();
+        wave++;
     }
 
     private bool PhaseEnded()
@@ -78,10 +80,12 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator CheckPhaseEnded()
     {
-        if (wave >= waves.Count)
-            yield return null;
         if (PhaseEnded())
+        {
+            if (wave >= waves.Count)
+                SceneManager.LoadScene("WinLose");
             StartCoroutine(ChangePhase());
+        }
         yield return new WaitForSeconds(5f);
         StartCoroutine(CheckPhaseEnded());
     }

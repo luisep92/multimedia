@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
@@ -82,7 +83,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Die()
     {
-
+        GameManager.Instance.IsPlayerAlive = false;
+        SceneManager.LoadScene("WinLose");
     }
 
     // Character alpha changes between 0.2 - 1 on time.
