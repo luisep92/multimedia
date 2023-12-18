@@ -29,6 +29,7 @@ public class EnemyKamikaze : Enemy
     // Reduces health
     public override void GetDamage(int damage)
     {
+        base.GetDamage(damage);
         health -= damage;
     }
 
@@ -70,10 +71,11 @@ public class EnemyKamikaze : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GetDamage(1);
         // Deal damage if collision is IDamageable.
         IDamageable obj = collision.gameObject.GetComponent<IDamageable>();
         if (obj != null)
             obj.GetDamage(1);
+        if (obj is Player)
+            GetDamage(health);
     } 
 }

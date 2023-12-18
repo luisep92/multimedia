@@ -6,10 +6,11 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] TMP_Text txtPhase;
-    public int wave = 0;
-    public List<GameObject> enemies;
-    List<GameObject[]> waves = new();
-    float sceneLimit;
+    [SerializeField] GameObject meteorPref;
+    [SerializeField] List<GameObject> enemies;
+    public List<GameObject[]> waves = new();
+    private int wave = 0;
+    private float sceneLimit;
     
 
 
@@ -19,6 +20,7 @@ public class LevelManager : MonoBehaviour
         sceneLimit = GetLimits();
         waves = GetWaves();
         StartCoroutine(CheckPhaseEnded());
+        StartCoroutine(SpawnMeteor());
     }
 
 
@@ -82,5 +84,13 @@ public class LevelManager : MonoBehaviour
             StartCoroutine(ChangePhase());
         yield return new WaitForSeconds(5f);
         StartCoroutine(CheckPhaseEnded());
+    }
+
+    IEnumerator SpawnMeteor()
+    {
+        float t = Random.Range(3, 10);
+        yield return new WaitForSeconds(t);
+        Instantiate(meteorPref, Vector3.zero, Quaternion.identity);
+        StartCoroutine(SpawnMeteor());
     }
 }

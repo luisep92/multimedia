@@ -20,6 +20,7 @@ public class EnemyShooter : Enemy
 
     public override void GetDamage(int damage)
     {
+        base.GetDamage(damage);
         health -= damage;
         if (health <= 0)
             Die();

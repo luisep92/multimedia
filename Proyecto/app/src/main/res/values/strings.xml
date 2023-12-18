@@ -6,4 +6,6 @@
     <string name="op22">op22</string>
     <string name="op3">op3</string>
     <string name="op4">op4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

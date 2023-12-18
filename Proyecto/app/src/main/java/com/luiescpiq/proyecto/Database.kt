@@ -25,6 +25,7 @@ class Database {
             "image" to image,
             "score" to score
         )
+        // Añadir juego nuevo.
         if (id.isNullOrBlank())
             connection.collection("Games").document().set(game)
                 .addOnSuccessListener {
@@ -33,6 +34,7 @@ class Database {
                 .addOnFailureListener { e ->
                     Log.w("DOC_SET", "Error inserting game.", e)
                 }
+        // Editar juego existente
         else
             connection.collection("Games").document(id).set(game)
                 .addOnSuccessListener {
@@ -43,9 +45,32 @@ class Database {
                 }
     }
 
-    // Llenamos el recycler view.
+    // Llenamos el recycler view con todos los juegos
     fun addItemsToList(list: MutableList<MyGame>, adapter: GameAdapter) {
         val gamesCollection = connection.collection("Games")
+        gamesCollection.addSnapshotListener { querySnapshot, firestoreException ->
+            if (firestoreException != null) {
+                Log.w("addSnapshotListener", "Escucha fallida!.", firestoreException)
+                return@addSnapshotListener
+            }
+            list.clear()
+            for (document in querySnapshot!!) {
+                val name = document!!["name"].toString()
+                val genre = document["category"].toString()
+                val description = document["description"].toString()
+                val image = document["image"].toString()
+                val score = document["score"]
+                val scoreFloat = if (score is Number) score.toFloat() else 0.0f
+                val id = document.id
+                list.add(MyGame(name, genre, description, image, scoreFloat, id))
+            }
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    // Llenamos el recycler view con los que tienen 5 estrellas
+    fun addBestItemsToList(list: MutableList<MyGame>, adapter: GameAdapter) {
+        val gamesCollection = connection.collection("Games").whereEqualTo("score", 5.0f)
         gamesCollection.addSnapshotListener { querySnapshot, firestoreException ->
             if (firestoreException != null) {
                 Log.w("addSnapshotListener", "Escucha fallida!.", firestoreException)

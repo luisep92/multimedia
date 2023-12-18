@@ -134,6 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dieParticle: {fileID: 946261759094494737, guid: e6557807313516a489548dbe9e67bb6e, type: 3}
-  health: 1
+  health: 3
   speed: 1
   bullet: {fileID: 5781780145291920868, guid: 5b493185854f7e84d814af39687a9b25, type: 3}
