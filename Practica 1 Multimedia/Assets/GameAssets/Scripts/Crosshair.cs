@@ -57,6 +57,7 @@ public class Crosshair : MonoBehaviour
     private void ChaseTarget()
     {
         transform.Translate((target.position - transform.position).normalized * speed * Time.deltaTime);
+        speed += Time.deltaTime;
         if (Vector2.Distance(target.position, transform.position) < 0.1f)
             state = State.TARGETED;
     }

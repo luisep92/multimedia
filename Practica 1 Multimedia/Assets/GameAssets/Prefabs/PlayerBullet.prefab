@@ -185,6 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreTag:
   - Player
-  speed: 5
+  speed: 9
   damage: 1
   hitParticle: {fileID: 5000497328069998879, guid: b67cb3bb7cd7be944ae9e76e5798e655, type: 3}

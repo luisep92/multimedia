@@ -76,7 +76,8 @@ public class Player : MonoBehaviour, IDamageable
     private void Move()
     {
         var horizontal = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
-        rb.MovePosition(new Vector2(transform.position.x + horizontal, transform.position.y));
+        var vertical = Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
+        rb.MovePosition(new Vector2(transform.position.x + horizontal, transform.position.y + vertical));
     }
 
     // If not godmode receives damage, update UI, enter godmode.
