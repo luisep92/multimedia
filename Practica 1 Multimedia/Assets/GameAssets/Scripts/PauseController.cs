@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
@@ -28,5 +29,20 @@ public class PauseController : MonoBehaviour
             pausePanel.SetActive(true);
             Time.timeScale = 0.0001f;
         }
+    }
+
+    public void BtnResume()
+    {
+        SwitchPause();
+    }
+
+    public void BtnMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void BtnRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
