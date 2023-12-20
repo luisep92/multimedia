@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\GameAssets\Scripts\Bullet.cs" />
     <Compile Include="Assets\GameAssets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\BossRay.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Enemy.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Player.cs" />
     <Compile Include="Assets\GameAssets\Scripts\WinLoseController.cs" />
@@ -71,8 +72,11 @@
     <Compile Include="Assets\GameAssets\Scripts\Crosshair.cs" />
     <Compile Include="Assets\GameAssets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\GameAssets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\BossPhaseLaser.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\BossPhase.cs" />
     <Compile Include="Assets\GameAssets\Scripts\EnemyKamikaze.cs" />
     <Compile Include="Assets\GameAssets\Scripts\IDamageable.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\EnemyBoss.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Parallax.cs" />
   </ItemGroup>
   <ItemGroup>

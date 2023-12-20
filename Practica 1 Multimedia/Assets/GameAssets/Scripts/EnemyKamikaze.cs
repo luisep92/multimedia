@@ -22,16 +22,12 @@ public class EnemyKamikaze : Enemy
 
         if(state == State.MOVING)
             Move();
-
-        if(health <= 0)
-            Die();
     }
 
     // Reduces health
     public override void GetDamage(int damage)
     {
         base.GetDamage(damage);
-        health -= damage;
     }
 
     // Look at target

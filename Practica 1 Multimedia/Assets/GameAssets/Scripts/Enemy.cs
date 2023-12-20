@@ -9,6 +9,17 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected float speed = 7f;
     protected int points = 10;
 
+    protected int Health
+    {
+        get => health;
+        set
+        {
+            health = value;
+            if (health <= 0)
+                Die();
+        }
+    }
+
     protected abstract void Move();
 
     protected abstract void Attack();
@@ -17,6 +28,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public virtual void GetDamage(int damage)
     {
+        health -= damage;
         StartCoroutine(BlinkRed(0.1f));
     }
 
