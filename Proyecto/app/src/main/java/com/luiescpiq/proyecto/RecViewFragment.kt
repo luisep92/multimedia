@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.luiescpiq.proyecto.databinding.FragmentRecViewBinding
 
+// Luis Escolano Piquer
+
 
 class RecViewFragment : Fragment() {
     private lateinit var binding: FragmentRecViewBinding

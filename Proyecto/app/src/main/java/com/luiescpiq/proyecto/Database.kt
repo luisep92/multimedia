@@ -4,6 +4,9 @@ import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
+// Luis Escolano Piquer
+
+
 // Ya que se usa la conexión en varias actividades, usamos un singleton con la conexión
 // para que solo haya una.
 class Database {

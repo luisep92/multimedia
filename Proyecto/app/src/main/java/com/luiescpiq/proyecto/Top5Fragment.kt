@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.luiescpiq.proyecto.databinding.FragmentRecViewBinding
 import com.luiescpiq.proyecto.databinding.FragmentTop5Binding
 
+// Luis Escolano Piquer
+
 
 class Top5Fragment : Fragment() {
     private lateinit var binding: FragmentTop5Binding

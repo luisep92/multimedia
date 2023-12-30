@@ -806,6 +806,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 688279645217555982, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766752223533810705, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2897857705674366715, guid: eee53528414250d4e90f1189f8c10123, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1048,6 +1056,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7343078247680011831, guid: 65686e06c5a19b74292424e645567234, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343078247680011831, guid: 65686e06c5a19b74292424e645567234, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343078247680011831, guid: 65686e06c5a19b74292424e645567234, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7692386716270076206, guid: 65686e06c5a19b74292424e645567234, type: 3}
       propertyPath: m_Name
       value: Player

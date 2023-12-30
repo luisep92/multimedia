@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] protected GameObject dieParticle;
-    [SerializeField] protected int health = 3;
+    [SerializeField] private int health = 3;
     [SerializeField] protected float speed = 7f;
     protected int points = 10;
 
@@ -28,7 +28,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public virtual void GetDamage(int damage)
     {
-        health -= damage;
+        Health -= damage;
         StartCoroutine(BlinkRed(0.1f));
     }
 

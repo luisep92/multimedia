@@ -16,6 +16,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.luiescpiq.proyecto.databinding.ActivityMainBinding
 
+// Luis Escolano Piquer
+
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 

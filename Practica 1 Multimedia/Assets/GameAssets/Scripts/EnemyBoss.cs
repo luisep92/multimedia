@@ -6,7 +6,7 @@ public class EnemyBoss : Enemy
 {
     private void Start()
     {
-        health = 20;
+        Health = 20;
     }
 
     protected override void Attack()

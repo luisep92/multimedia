@@ -15,6 +15,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.luiescpiq.proyecto.databinding.ItemGameListBinding
 import com.squareup.picasso.Picasso
 
+// Luis Escolano Piquer
+
+
 data class MyGame (val name: String, val genre: String, val description: String, val image: String, val score: Float, val id: String)
 
 class GameAdapter (gameList: MutableList<MyGame>, context: Context): RecyclerView.Adapter<GameAdapter.GameViewHolder>() {

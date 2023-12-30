@@ -10,6 +10,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.luiescpiq.proyecto.databinding.ActivityAddGameBinding
 import com.luiescpiq.proyecto.databinding.ActivityMainBinding
 
+// Luis Escolano Piquer
+
 class AddGameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddGameBinding
     private lateinit var db: Database

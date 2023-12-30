@@ -6,15 +6,21 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    private enum State { IDLE, MOVING, DASHING }
+
     public static Player Instance;
 
     [SerializeField] float speed;
     [SerializeField] GameObject bullet;
+    private State state = State.MOVING;
     private bool godMode;
+    private bool canDash = true;
     private Rigidbody2D rb;
     private int maxHealth = 5;
     private int currentHealth = 5;
     private List<GameObject> UIHealth = new();
+    private TrailRenderer tren;
+
 
     private int CurrentHealth
     {
@@ -42,6 +48,8 @@ public class Player : MonoBehaviour, IDamageable
         if (Instance != null)
             Destroy(Instance.gameObject);
         Instance = this;
+
+        tren = GetComponent<TrailRenderer>();
     }
 
     void Start()
@@ -57,12 +65,16 @@ public class Player : MonoBehaviour, IDamageable
 
         if (godMode)
             Blink();
+
+        if (Input.GetButtonDown("Dash") && canDash)
+            StartCoroutine(Dash());
     }
 
     // Move here because it's done by rigidbody.
     private void FixedUpdate()
     {
-        Move();
+        if (state == State.MOVING)
+            Move();
     }
 
     // Player shoot.
@@ -123,5 +135,34 @@ public class Player : MonoBehaviour, IDamageable
         GodMode = true;
         yield return new WaitForSeconds(time);
         GodMode = false;
+    }
+
+    private IEnumerator Dash()
+    {
+        state = State.DASHING;
+        canDash = false;
+        var horizontal = Input.GetAxisRaw("Horizontal");
+        var vertical = Input.GetAxisRaw("Vertical");
+        rb.velocity = new Vector2(horizontal * 15f, vertical * 15f);
+        tren.emitting = true;
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(VanishTrail(0f));
+        rb.velocity = Vector2.zero;
+        state = State.MOVING;
+        yield return new WaitForSeconds(0.2f);
+        canDash = true;
+    }
+
+    private IEnumerator VanishTrail(float t)
+    {
+        if(t >= 0.2f)
+        {
+            tren.time = 0.10f;
+            tren.emitting = false;
+            yield break;
+        }
+        yield return new WaitForEndOfFrame();
+        tren.time = Mathf.Lerp(tren.time, 0, 1f * t);
+        StartCoroutine(VanishTrail(t + Time.deltaTime));
     }
 }

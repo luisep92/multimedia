@@ -25,7 +25,7 @@ public class BossPhaseLaser : BossPhase
         sr = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    protected void Update()
     {
         if (action == Action.DISAPPEARING)
             Disappear();
@@ -40,7 +40,7 @@ public class BossPhaseLaser : BossPhase
     
 
     // Change alpha to 0. Then goes Action.MOVING.
-    void Disappear()
+    private void Disappear()
     {
         t -= Time.deltaTime;
         ChangeAlpha(Mathf.Lerp(1f, 0f, 1f - (t / TIME_BLINK)));
@@ -66,7 +66,7 @@ public class BossPhaseLaser : BossPhase
     }
 
     // Alpha 0 to 1. Next is Action.ATTACKING.
-    void Appear()
+    private void Appear()
     {
         t -= Time.deltaTime;
         ChangeAlpha(Mathf.Lerp(0f, 1f, 1f - (t / TIME_BLINK)));
@@ -94,14 +94,14 @@ public class BossPhaseLaser : BossPhase
     }
 
     // Change alpha.
-    void ChangeAlpha(float value)
+    private void ChangeAlpha(float value)
     {
         Color myNewColor = sr.color;
         myNewColor.a = value;
         sr.color = myNewColor;
     }
 
-    LineRenderer GetLine()
+    private LineRenderer GetLine()
     {
         LineRenderer lren = gameObject.AddComponent<LineRenderer>();
         lren.material = defaultMaterial;

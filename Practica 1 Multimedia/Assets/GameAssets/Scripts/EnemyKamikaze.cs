@@ -73,6 +73,6 @@ public class EnemyKamikaze : Enemy
         if (obj != null)
             obj.GetDamage(2);
         if (obj is Player)
-            GetDamage(health);
+            GetDamage(Health);
     } 
 }

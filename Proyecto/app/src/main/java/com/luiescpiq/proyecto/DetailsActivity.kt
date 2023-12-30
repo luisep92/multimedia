@@ -6,6 +6,9 @@ import com.luiescpiq.proyecto.databinding.ActivityAddGameBinding
 import com.luiescpiq.proyecto.databinding.ActivityDetailsBinding
 import com.squareup.picasso.Picasso
 
+// Luis Escolano Piquer
+
+
 class DetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
