@@ -12,6 +12,8 @@ public class Player : MonoBehaviour, IDamageable
 
     [SerializeField] float speed;
     [SerializeField] GameObject bullet;
+    [SerializeField] AudioClip[] sounds;
+    private Camera mainCamera;
     private State state = State.MOVING;
     private bool godMode;
     private bool canDash = true;
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour, IDamageable
     private int currentHealth = 5;
     private List<GameObject> UIHealth = new();
     private TrailRenderer tren;
+    private AudioSource aSource;
 
 
     private int CurrentHealth
@@ -39,7 +42,8 @@ public class Player : MonoBehaviour, IDamageable
         set 
         { 
             godMode = value; 
-            if (value == false) ChangePlayerAlpha(1); 
+            if (value == false) 
+                ChangePlayerAlpha(1); 
         }
     }
 
@@ -50,6 +54,7 @@ public class Player : MonoBehaviour, IDamageable
         Instance = this;
 
         tren = GetComponent<TrailRenderer>();
+        aSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -57,6 +62,7 @@ public class Player : MonoBehaviour, IDamageable
         foreach (Transform t in GameObject.Find("Content").transform)
             UIHealth.Add(t.gameObject);
         rb = GetComponent<Rigidbody2D>();
+        mainCamera = Camera.main;
     }
 
     void Update()
@@ -81,7 +87,11 @@ public class Player : MonoBehaviour, IDamageable
     void Shoot()
     {
         if (Input.GetButtonDown("Fire1"))
+        {
             Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity);
+            aSource.clip = sounds[1];
+            aSource.Play();
+        }
     }
 
     // Player movement.
@@ -97,7 +107,11 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (GodMode)
             return;
-        for(int i = 0; i < damage; i++)
+
+        aSource.clip = sounds[0];
+        aSource.Play();
+        StartCoroutine(Shake(0.1f, 30f));
+        for (int i = 0; i < damage; i++)
         {
             if(CurrentHealth > 0)
             {
@@ -105,7 +119,7 @@ public class Player : MonoBehaviour, IDamageable
                 UIHealth[maxHealth - CurrentHealth - 1].SetActive(false);
             }
         }
-        StartCoroutine(EnterGodMode(2f));
+        StartCoroutine(EnterGodMode(1f));
     }
 
     private void Die()
@@ -117,7 +131,7 @@ public class Player : MonoBehaviour, IDamageable
     // Character alpha changes between 0.2 - 1 on time.
     void Blink()
     {
-        ChangePlayerAlpha(Mathf.PingPong(Time.time * 5, 1) + 0.2f);
+        ChangePlayerAlpha(Mathf.PingPong(Time.time * 7, 1) + 0.2f);
     }
 
     // Change player alpha.
@@ -164,5 +178,20 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForEndOfFrame();
         tren.time = Mathf.Lerp(tren.time, 0, 1f * t);
         StartCoroutine(VanishTrail(t + Time.deltaTime));
+    }
+
+    private IEnumerator Shake(float t, float intensity = 10)
+    {
+        float rx = Random.Range(-1f, 1f);
+        float ry = Random.Range(-1f, 1f);
+        Vector3 startPos = new Vector3(0, 0, -10);
+        mainCamera.transform.position = new Vector3(startPos.x + (intensity / 220f) * rx, startPos.y + (intensity / 220f) * ry, startPos.z);
+        t -= Time.deltaTime;
+        yield return new WaitForEndOfFrame();
+
+        if (t > 0f)
+            StartCoroutine(Shake(t, intensity));
+        else
+            mainCamera.transform.position = startPos;
     }
 }

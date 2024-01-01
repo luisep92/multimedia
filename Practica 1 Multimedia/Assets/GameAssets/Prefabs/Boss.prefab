@@ -137,6 +137,7 @@ MonoBehaviour:
   dieParticle: {fileID: 0}
   health: 20
   speed: 7
+  hitSound: {fileID: 8300000, guid: 98d9bdd5d9735d740b0826947e6496cf, type: 3}
 --- !u!114 &3480040500910513433
 MonoBehaviour:
   m_ObjectHideFlags: 0

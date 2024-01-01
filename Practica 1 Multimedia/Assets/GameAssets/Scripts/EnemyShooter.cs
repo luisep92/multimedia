@@ -8,8 +8,10 @@ public class EnemyShooter : Enemy
     protected float xMin = -8.75f;
     protected float xMax = 8.75f;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        speed = speed * ( 1 + GameManager.Instance.GetWave() * 0.3f);
         Attack();
     }
 
@@ -20,6 +22,7 @@ public class EnemyShooter : Enemy
 
     public override void GetDamage(int damage)
     {
+        PlaySound(sounds[1]);
         base.GetDamage(damage);
     }
 
@@ -34,6 +37,7 @@ public class EnemyShooter : Enemy
     {
         yield return new WaitForSeconds(Random.Range(0.3f, 2f));
         Instantiate(bullet, transform.position, transform.rotation);
+        PlaySound(sounds[0]);
         StartCoroutine(Shoot());
     }
 

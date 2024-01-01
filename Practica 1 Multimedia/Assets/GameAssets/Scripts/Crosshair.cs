@@ -8,22 +8,39 @@ public class Crosshair : MonoBehaviour
     enum State { MOVING, TARGETED }
 
     [HideInInspector] public EnemyKamikaze parent;
-    State state = State.MOVING;
-    float speed = 5f;
-    float timeToVanish = 1f;
-    Transform target;
-    Material material;
-    float t = 0f;
+    private State state = State.MOVING;
+    private float speed = 5f;
+    private float timeToVanish = 1f;
+    private Transform target;
+    private Material material;
+    private float t = 0f;
+    private AudioSource aSource;
+
+    private State CState
+    {
+        get => state;
+        set { 
+            state = value;
+            if (value == State.TARGETED)
+            {
+                aSource.pitch = 2f;
+                aSource.Play();
+            }
+        }
+    }
 
     private void Start()
     {
         target = Player.Instance.transform;
         material = GetComponent<SpriteRenderer>().material;
+        aSource = GetComponent<AudioSource>();
+
+        StartCoroutine(BipSound());
     }
 
     void Update()
     {
-        if (state == State.MOVING)
+        if (CState == State.MOVING)
            ChaseTarget();
         else
         {
@@ -59,6 +76,14 @@ public class Crosshair : MonoBehaviour
         transform.Translate((target.position - transform.position).normalized * speed * Time.deltaTime);
         speed += Time.deltaTime;
         if (Vector2.Distance(target.position, transform.position) < 0.1f)
-            state = State.TARGETED;
+            CState = State.TARGETED;
+    }
+
+    private IEnumerator BipSound()
+    {
+        aSource.Play();
+        yield return new WaitForSeconds(0.8f);
+        if (CState == State.MOVING)
+            StartCoroutine(BipSound());
     }
 }

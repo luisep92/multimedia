@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyKamikaze : Enemy
@@ -5,12 +7,23 @@ public class EnemyKamikaze : Enemy
     public enum State { SEARCHING, MOVING }
 
     [SerializeField] GameObject crosshair;
-    Transform target;
-    State state = State.SEARCHING;
+    private Transform target;
+    private State state = State.SEARCHING;
 
-
-    void Start()
+    State CState
     {
+        get => state;
+        set
+        {
+            state = value;
+            if (value == State.MOVING)
+                StartCoroutine(MoveSound());
+        }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         points = 15;
         SetCrosshair();
     }
@@ -20,13 +33,14 @@ public class EnemyKamikaze : Enemy
     {
         Attack();
 
-        if(state == State.MOVING)
+        if(CState == State.MOVING)
             Move();
     }
 
     // Reduces health
     public override void GetDamage(int damage)
     {
+        PlaySound(sounds[1]);
         base.GetDamage(damage);
     }
 
@@ -45,7 +59,7 @@ public class EnemyKamikaze : Enemy
     // Instantiate particle, destroy object
     protected override void Die()
     {
-        if (state == State.SEARCHING)
+        if (CState == State.SEARCHING)
             Destroy(target.gameObject);
         Destroy(Instantiate(dieParticle, transform.position, Quaternion.identity), 3);
         Destroy(gameObject);
@@ -55,7 +69,7 @@ public class EnemyKamikaze : Enemy
     public void SetTarget()
     {
         target = Player.Instance.transform;
-        state = State.MOVING;
+        CState = State.MOVING;
     }
 
     // Instantiates crosshair
@@ -75,4 +89,12 @@ public class EnemyKamikaze : Enemy
         if (obj is Player)
             GetDamage(Health);
     } 
+
+    private IEnumerator MoveSound()
+    {
+        PlaySound(sounds[0]);
+        float t = aSource.clip.length;
+        yield return new WaitForSeconds(t);
+        StartCoroutine(MoveSound());
+    }
 }

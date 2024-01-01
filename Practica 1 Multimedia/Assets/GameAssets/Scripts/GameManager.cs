@@ -54,4 +54,9 @@ public class GameManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<LevelManager>();
     }
+
+    public int GetWave()
+    {
+        return levelManager.Wave;
+    }
 }

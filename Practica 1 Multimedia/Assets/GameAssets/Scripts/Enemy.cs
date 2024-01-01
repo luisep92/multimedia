@@ -7,6 +7,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected GameObject dieParticle;
     [SerializeField] private int health = 3;
     [SerializeField] protected float speed = 7f;
+    [SerializeField] protected AudioClip[] sounds;
+    protected AudioSource aSource;
     protected int points = 10;
 
     protected int Health
@@ -19,6 +21,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
                 Die();
         }
     }
+    
 
     protected abstract void Move();
 
@@ -26,15 +29,20 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected abstract void Die();
 
+    protected virtual void Start()
+    {
+        aSource = GetComponent<AudioSource>();
+    }
+
     public virtual void GetDamage(int damage)
     {
         Health -= damage;
-        StartCoroutine(BlinkRed(0.1f));
+        StartCoroutine(BlinkColor(0.1f, Color.red));
     }
 
-    private IEnumerator BlinkRed(float time)
+    private IEnumerator BlinkColor(float time, Color color)
     {
-        ChangeColor(Color.red);
+        ChangeColor(color);
         yield return new WaitForSeconds(time);
         ChangeColor(Color.white);
     }
@@ -47,5 +55,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected void OnDestroy()
     {
         GameManager.Instance.Score += points;
+    }
+
+    protected void PlaySound(AudioClip clip)
+    {
+        if (aSource.isActiveAndEnabled)
+            aSource.PlayOneShot(clip);
     }
 }

@@ -13,8 +13,9 @@ public class LevelManager : MonoBehaviour
     public List<GameObject[]> waves = new();
     private int wave = 0;
     private float sceneLimit;
-    
 
+    public int Wave => wave;
+    
 
     void Start()
     {
