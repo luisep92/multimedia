@@ -1050,12 +1050,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
       propertyPath: sounds.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
       propertyPath: sounds.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 334a00525db58984bb1b07f1045980a7, type: 3}
+    - target: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
+      propertyPath: sounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: c17a7c9c5b04d2d408c63263822e5f10, type: 3}
     - target: {fileID: 6012236249253045633, guid: 65686e06c5a19b74292424e645567234, type: 3}
       propertyPath: m_Volume
       value: 0.712

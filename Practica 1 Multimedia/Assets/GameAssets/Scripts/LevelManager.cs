@@ -85,7 +85,10 @@ public class LevelManager : MonoBehaviour
         if (PhaseEnded())
         {
             if (wave >= waves.Count)
+            {
                 SceneManager.LoadScene("WinLose");
+                GameManager.Instance.CurrentLevel = "Level2";
+            }
             StartCoroutine(ChangePhase());
         }
         yield return new WaitForSeconds(5f);

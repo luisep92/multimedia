@@ -38,11 +38,13 @@ public class PauseController : MonoBehaviour
 
     public void BtnMainMenu()
     {
+        SwitchPause();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void BtnRestart()
     {
+        SwitchPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

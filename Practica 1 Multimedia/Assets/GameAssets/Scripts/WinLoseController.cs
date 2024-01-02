@@ -27,7 +27,13 @@ public class WinLoseController : MonoBehaviour
     {
         // TODO: Change main menu for next scene
         if (GameManager.Instance.IsPlayerAlive)
-            SceneManager.LoadScene("MainMenu");
+        {
+            string cl = GameManager.Instance.CurrentLevel;
+            if (cl == "Level1" || cl == "Level2") // TODO: add on kill boss a path to menu
+                SceneManager.LoadScene(GameManager.Instance.CurrentLevel);
+            else
+                SceneManager.LoadScene("MainMenu");
+        }
         else
             SceneManager.LoadScene(GameManager.Instance.CurrentLevel);
     }

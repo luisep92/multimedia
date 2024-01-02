@@ -89,8 +89,7 @@ public class Player : MonoBehaviour, IDamageable
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity);
-            aSource.clip = sounds[1];
-            aSource.Play();
+            aSource.PlayOneShot(sounds[1]);
         }
     }
 
@@ -108,8 +107,7 @@ public class Player : MonoBehaviour, IDamageable
         if (GodMode)
             return;
 
-        aSource.clip = sounds[0];
-        aSource.Play();
+        aSource.PlayOneShot(sounds[0]);
         StartCoroutine(Shake(0.1f, 30f));
         for (int i = 0; i < damage; i++)
         {
@@ -159,6 +157,7 @@ public class Player : MonoBehaviour, IDamageable
         var vertical = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(horizontal * 15f, vertical * 15f);
         tren.emitting = true;
+        aSource.PlayOneShot(sounds[2]);
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(VanishTrail(0f));
         rb.velocity = Vector2.zero;
