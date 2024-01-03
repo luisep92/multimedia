@@ -21,6 +21,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable
                 Die();
         }
     }
+
+    public float Speed
+    {
+        get => speed;
+        set => speed = value;
+    }
     
 
     protected abstract void Move();

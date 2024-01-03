@@ -9,20 +9,22 @@ public class BossPhaseLaser : BossPhase
 
     [SerializeField] Material defaultMaterial;
     [SerializeField] GameObject ray;
-    private const float TIME_BLINK = 0.5f;
-    private Action action;
-    private SpriteRenderer sr;
-    private float t = TIME_BLINK;
-    private float limit = 7.35f;
+    private const float TIME_BLINK = 0.4f;
+    private Action action = Action.MOVING;
     private Vector3 tempShake;
-    private bool aim = false;
     private LineRenderer lren;
+    private float t = TIME_BLINK;
+    private bool aim = false;
+    private int timesAttack;
+
 
 
     protected override void Start()
     {
         base.Start();
         sr = GetComponent<SpriteRenderer>();
+        timesAttack = Random.Range(1, 4) + 1;
+        StartCoroutine(Move());
     }
 
     protected void Update()
@@ -37,7 +39,12 @@ public class BossPhaseLaser : BossPhase
         if (tempShake != default)
             Shake();
     }
-    
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        timesAttack = Random.Range(1, 4);
+    }
 
     // Change alpha to 0. Then goes Action.MOVING.
     private void Disappear()
@@ -52,17 +59,31 @@ public class BossPhaseLaser : BossPhase
     }
 
     // Disable collider, move position, start aim. Next is Action.APPEARING.
+    // THIS IS THE FIRST AND LAST EVENT
     private IEnumerator Move()
     {
         action = Action.MOVING;
         GetComponent<CircleCollider2D>().enabled = false;
+        MovePosition();
         yield return new WaitForSeconds(TIME_BLINK);
         action = Action.APPEARING;
-        float x = Random.Range(-limit, limit);
-        transform.position = new Vector3(x, transform.position.y, 0);
         sr.flipX = Player.Instance.transform.position.x > transform.position.x;
         GetComponent<CircleCollider2D>().enabled = true;
         aim = true;
+        if (timesAttack-- <= 0)
+        {
+            action = Action.MOVING;
+            this.enabled = false;
+        }
+    }
+
+    private float MovePosition()
+    {
+        float x = Random.Range(-limit, limit);
+        transform.position = new Vector3(x, 4.5f, 0);
+        if(IsNear())
+            x = MovePosition();
+        return x;
     }
 
     // Alpha 0 to 1. Next is Action.ATTACKING.
@@ -93,20 +114,13 @@ public class BossPhaseLaser : BossPhase
         action = Action.DISAPPEARING;
     }
 
-    // Change alpha.
-    private void ChangeAlpha(float value)
-    {
-        Color myNewColor = sr.color;
-        myNewColor.a = value;
-        sr.color = myNewColor;
-    }
-
     private LineRenderer GetLine()
     {
         LineRenderer lren = gameObject.AddComponent<LineRenderer>();
         lren.material = defaultMaterial;
         lren.startWidth = 0.07f;
         lren.endWidth = 0.07f;
+        lren.sortingOrder = 4;
         Color c = Color.red;
         c.a = 0.2f;
         lren.startColor = c;
@@ -131,5 +145,10 @@ public class BossPhaseLaser : BossPhase
         transform.up = transform.position - Player.Instance.transform.position;
         if (lren != null)
             lren.SetPosition(1, transform.position - transform.up * limit * 2);
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(Move());
     }
 }
