@@ -54,4 +54,17 @@ public class EnemyBoss : Enemy
         int n = Random.Range(0, attacks.Length);
         attacks[n].enabled = true;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player p = Player.Instance;
+            p.GetDamage(1);
+            Vector3 direction = transform.position - p.transform.position;
+            float dirX = direction.x < 0 ? 1 : -1;
+            float dirY = direction.y > 0 ? 1 : -1;
+            p.StartCoroutine(p.Dash(dirX, dirY));
+        }     
+    }
 }

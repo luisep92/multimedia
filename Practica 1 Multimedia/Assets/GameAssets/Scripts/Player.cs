@@ -11,11 +11,11 @@ public class Player : MonoBehaviour, IDamageable
     public static Player Instance;
 
     [SerializeField] float speed;
+    [SerializeField] private bool godMode;
     [SerializeField] GameObject bullet;
     [SerializeField] AudioClip[] sounds;
     private Camera mainCamera;
     private State state = State.MOVING;
-    private bool godMode;
     private bool canDash = true;
     private Rigidbody2D rb;
     private int maxHealth = 5;
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour, IDamageable
             Blink();
 
         if (Input.GetButtonDown("Dash") && canDash)
-            StartCoroutine(Dash());
+            StartCoroutine(Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
     }
 
     // Move here because it's done by rigidbody.
@@ -149,12 +149,10 @@ public class Player : MonoBehaviour, IDamageable
         GodMode = false;
     }
 
-    private IEnumerator Dash()
+    public IEnumerator Dash(float horizontal, float vertical)
     {
         state = State.DASHING;
         canDash = false;
-        var horizontal = Input.GetAxisRaw("Horizontal");
-        var vertical = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(horizontal * 15f, vertical * 15f);
         tren.emitting = true;
         aSource.PlayOneShot(sounds[2]);

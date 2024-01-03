@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossPhaseDash : BossPhase
 {
     [SerializeField] GameObject appearParticle;
     private TrailRenderer tRen;
+    private CircleCollider2D col;
     private float direction = 0;
     private float speed;
     float t = 0f;
 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         tRen = GetComponent<TrailRenderer>();
+        col = GetComponent<CircleCollider2D>();
     }
 
     // Start is called before the first frame update
@@ -25,6 +29,7 @@ public class BossPhaseDash : BossPhase
 
     private void Update()
     {
+        col.enabled = true;
         if (t > 0.8f)
             transform.Translate(new Vector3(speed * direction * Time.deltaTime, 0, 0), Space.World);
         else
@@ -33,8 +38,9 @@ public class BossPhaseDash : BossPhase
         t += Time.deltaTime;
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         StartCoroutine(Attack());
     }
 
@@ -53,20 +59,26 @@ public class BossPhaseDash : BossPhase
 
     private void Appear()
     {
+        MovePosition();
+        tRen.emitting = false;
+        Destroy(Instantiate(appearParticle, transform.position, Quaternion.identity), 2f);
+    }
+
+    private void MovePosition()
+    {
         float r = Random.Range(0f, 1f) >= 0.5f ? -1 : 1;
         float x = -r * limit;
         float y = Player.Instance.transform.position.y;
-        transform.position = new Vector3( x, y, 0 );
+        transform.position = new Vector3(x, y, 0);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, 45 * -r));
         direction = r;
-        tRen.emitting = false;
-        Instantiate(appearParticle, transform.position, Quaternion.identity);
+
+        if (IsNear())
+            MovePosition();
     }
 
     IEnumerator Attack()
     {
-        while (IsNear())
-            yield return null;
         Appear();
         yield return new WaitForSeconds(0.8f);
         tRen.time = 0.2f;

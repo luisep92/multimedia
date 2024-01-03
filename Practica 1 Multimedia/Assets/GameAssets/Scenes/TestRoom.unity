@@ -139,9 +139,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.data[0]
+      value: 
+      objectReference: {fileID: 291036970}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.data[1]
+      value: 
+      objectReference: {fileID: 1701274778}
     - target: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.92
+      value: -5.94
       objectReference: {fileID: 0}
     - target: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -181,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7881183018165365058, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_Name
-      value: Boss (1)
+      value: Boss 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -309,6 +321,11 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!4 &144086985 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+  m_PrefabInstance: {fileID: 120395202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &162871350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -502,10 +519,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1690507907636614650, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
-      propertyPath: m_Parameters.colorGradient.m_ColorSpace
-      value: -1
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.size
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.data[0]
+      value: 
+      objectReference: {fileID: 1701274778}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.data[1]
+      value: 
+      objectReference: {fileID: 144086985}
     - target: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.35
@@ -555,6 +580,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+--- !u!4 &291036970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+  m_PrefabInstance: {fileID: 290701997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &595436622
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +669,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.data[0]
+      value: 
+      objectReference: {fileID: 291036970}
+    - target: {fileID: 3480040500910513433, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: others.Array.data[1]
+      value: 
+      objectReference: {fileID: 144086985}
     - target: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.16
@@ -681,15 +723,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7881183018165365058, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_Name
-      value: Boss (2)
+      value: Boss2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7881183018165365058, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1701274778}
     - targetCorrespondingSourceObject: {fileID: 7881183018165365058, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1701274777}
@@ -702,6 +741,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
+      propertyPath: godMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7343078247680011831, guid: 65686e06c5a19b74292424e645567234, type: 3}
       propertyPath: m_PreviewTimeScale
       value: 1
@@ -1022,19 +1065,11 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &1701274778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!4 &1701274778 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+  m_PrefabInstance: {fileID: 1076605812}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701274776}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd54d4dca168acd469ab2255d84e545f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appearParticle: {fileID: 8401173368626810690, guid: e415c1a11d3523545a0c849bcd741cd5, type: 3}
 --- !u!1001 &1815862398
 PrefabInstance:
   m_ObjectHideFlags: 0

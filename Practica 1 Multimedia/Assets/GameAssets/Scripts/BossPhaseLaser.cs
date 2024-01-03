@@ -15,16 +15,13 @@ public class BossPhaseLaser : BossPhase
     private LineRenderer lren;
     private float t = TIME_BLINK;
     private bool aim = false;
-    private int timesAttack;
+    private int timesAttack = 1;
 
 
 
     protected override void Start()
     {
         base.Start();
-        sr = GetComponent<SpriteRenderer>();
-        timesAttack = Random.Range(1, 4) + 1;
-        StartCoroutine(Move());
     }
 
     protected void Update()
@@ -42,8 +39,9 @@ public class BossPhaseLaser : BossPhase
 
     protected override void OnDisable()
     {
+        timesAttack = 1;
+        GetComponent<CircleCollider2D>().enabled = false;
         base.OnDisable();
-        timesAttack = Random.Range(1, 4);
     }
 
     // Change alpha to 0. Then goes Action.MOVING.
@@ -53,28 +51,26 @@ public class BossPhaseLaser : BossPhase
         ChangeAlpha(Mathf.Lerp(1f, 0f, 1f - (t / TIME_BLINK)));
         if (t <= 0)
         {
-            StartCoroutine(Move());
             t = TIME_BLINK;
+            if (timesAttack > 0)
+            {
+                timesAttack--;
+                this.enabled = false;
+            }
+            else
+                Move();
         }
     }
 
     // Disable collider, move position, start aim. Next is Action.APPEARING.
-    // THIS IS THE FIRST AND LAST EVENT
-    private IEnumerator Move()
+    private void Move()
     {
-        action = Action.MOVING;
-        GetComponent<CircleCollider2D>().enabled = false;
+        ChangeAlpha(0);
         MovePosition();
-        yield return new WaitForSeconds(TIME_BLINK);
-        action = Action.APPEARING;
-        sr.flipX = Player.Instance.transform.position.x > transform.position.x;
+        sRen.flipX = Player.Instance.transform.position.x > transform.position.x;
         GetComponent<CircleCollider2D>().enabled = true;
         aim = true;
-        if (timesAttack-- <= 0)
-        {
-            action = Action.MOVING;
-            this.enabled = false;
-        }
+        action = Action.APPEARING;
     }
 
     private float MovePosition()
@@ -126,17 +122,17 @@ public class BossPhaseLaser : BossPhase
         lren.startColor = c;
         lren.endColor = c;
         Vector3 down = -transform.up.normalized;
-        Vector3 endPoint = transform.position + down * (limit * 2);
+        Vector3 endPoint = transform.position + down * (limit * 4);
         lren.positionCount = 2;
         lren.SetPosition(0, transform.position);
         lren.SetPosition(1, endPoint);
         return lren;
     }
 
-    private void Shake()
+    private void Shake(float intensity = 0.04f)
     {
-        float rx = Random.Range(-0.04f, 0.04f) + tempShake.x;
-        float ry = Random.Range(-0.04f, 0.04f) + tempShake.y;
+        float rx = Random.Range(-intensity, intensity) + tempShake.x;
+        float ry = Random.Range(-intensity, intensity) + tempShake.y;
         transform.position = new Vector3(rx, ry, 0);
     }
 
@@ -147,8 +143,9 @@ public class BossPhaseLaser : BossPhase
             lren.SetPosition(1, transform.position - transform.up * limit * 2);
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        StartCoroutine(Move());
+        base.OnEnable();
+        Move();
     }
 }
