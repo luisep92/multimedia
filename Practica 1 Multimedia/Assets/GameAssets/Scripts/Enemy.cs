@@ -58,7 +58,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         GetComponent<SpriteRenderer>().material.color = c;
     }
 
-    protected void OnDestroy()
+    protected virtual void OnDestroy()
     {
         GameManager.Instance.Score += points;
     }

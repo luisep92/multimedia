@@ -10,7 +10,7 @@ public abstract class BossPhase : MonoBehaviour
 {
     public enum BossState { IDLE, ATTACKING }
 
-    [SerializeField] private Transform[] others;
+    [HideInInspector] private List<Transform> others;
     protected EnemyBoss boss;
     protected SpriteRenderer sRen;
     protected float limit = 9f;
@@ -29,6 +29,7 @@ public abstract class BossPhase : MonoBehaviour
     {
         boss = GetComponent<EnemyBoss>();
         sRen = GetComponent<SpriteRenderer>();
+        others = boss.others;
     }
 
 

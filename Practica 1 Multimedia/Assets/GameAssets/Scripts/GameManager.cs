@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Xml.Schema;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public int GetWave()
     {
-        return levelManager.Wave;
+        var lm = (Level1Manager)levelManager;
+        return lm.Wave;
     }
 }

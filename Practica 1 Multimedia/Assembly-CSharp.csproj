@@ -65,6 +65,7 @@
     <Compile Include="Assets\GameAssets\Scripts\BossRay.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Enemy.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Player.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\Level1Manager.cs" />
     <Compile Include="Assets\GameAssets\Scripts\WinLoseController.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Meteor.cs" />
     <Compile Include="Assets\GameAssets\Scripts\EnemyShooter.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\GameAssets\Scripts\EnemyBoss.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Parallax.cs" />
     <Compile Include="Assets\GameAssets\Scripts\BossPhaseDash.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\Level2Manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

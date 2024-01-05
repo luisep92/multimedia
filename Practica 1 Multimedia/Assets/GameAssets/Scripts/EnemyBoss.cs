@@ -7,15 +7,13 @@ using UnityEngine;
 
 public class EnemyBoss : Enemy
 {
+    public List<Transform> others;
     private BossPhase[] attacks;
-    [HideInInspector] public IEnumerable others;
+   
 
     protected override void Start()
     {
         base.Start();
-        others = from go in FindObjectsOfType<EnemyBoss>()
-                 where go.gameObject != this.gameObject
-                 select go.gameObject;
         attacks = GetComponents<BossPhase>();
         Health = 20;
         ChangeAttack(0f);
@@ -66,5 +64,13 @@ public class EnemyBoss : Enemy
             float dirY = direction.y > 0 ? 1 : -1;
             p.StartCoroutine(p.Dash(dirX, dirY));
         }     
+    }
+
+    protected override void OnDestroy()
+    {
+        foreach (Transform t in others)
+        {
+            t.GetComponent<EnemyBoss>().others.Remove(this.transform);
+        }
     }
 }
