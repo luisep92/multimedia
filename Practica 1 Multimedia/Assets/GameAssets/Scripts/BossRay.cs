@@ -23,7 +23,8 @@ public class BossRay : MonoBehaviour
         {
             float mod = Time.deltaTime * 3f;
             transform.Translate(-transform.up * Time.deltaTime * speed, Space.World);
-            sren.size = new Vector2(sren.size.x - mod, sren.size.y);
+            if (sren.size.x > 0)
+                sren.size = new Vector2(sren.size.x - mod, sren.size.y);
             // Adjust collider
             Vector2 p0 = new(col.points[0].x + (mod/2), col.points[0].y);
             Vector2 p1 = new(col.points[1].x + (mod/2), col.points[1].y);

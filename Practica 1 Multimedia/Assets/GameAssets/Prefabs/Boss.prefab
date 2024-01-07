@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 3480040500910513433}
   - component: {fileID: 7367037729891132425}
   - component: {fileID: 5533966099653846302}
-  - component: {fileID: 3479842330212590930}
+  - component: {fileID: 672975759854226874}
+  - component: {fileID: 6652809899276531851}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Enemy
@@ -138,10 +139,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dieParticle: {fileID: 0}
-  health: 20
+  health: 1
   speed: 26.38
   sounds:
   - {fileID: 8300000, guid: c90ed89a4cf2d1d4f8f49d9e6518ec51, type: 3}
+  others:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3480040500910513433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +269,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!96 &3479842330212590930
+--- !u!96 &672975759854226874
 TrailRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -378,3 +382,24 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!95 &6652809899276531851
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881183018165365058}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c3bc670c13ebd940be79858a5066009, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

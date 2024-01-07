@@ -35,4 +35,9 @@ public abstract class LevelManager : MonoBehaviour
     {
         txtScore.text = "Score: " + GameManager.Instance.Score;
     }
+
+    protected void StartMusic()
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }

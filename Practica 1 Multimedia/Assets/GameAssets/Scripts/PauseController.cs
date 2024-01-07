@@ -8,6 +8,7 @@ public class PauseController : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     private bool isPaused = false;
 
+
     // Update is called once per frame
     void Update()
     {

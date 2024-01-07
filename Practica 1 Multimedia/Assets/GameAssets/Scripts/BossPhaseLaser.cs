@@ -140,7 +140,7 @@ public class BossPhaseLaser : BossPhase
     {
         transform.up = transform.position - Player.Instance.transform.position;
         if (lren != null)
-            lren.SetPosition(1, transform.position - transform.up * limit * 2);
+            lren.SetPosition(1, transform.position - transform.up * limit * 4);
     }
 
     protected override void OnEnable()

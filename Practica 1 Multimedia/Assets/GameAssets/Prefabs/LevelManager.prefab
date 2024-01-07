@@ -1755,7 +1755,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4353324580455192008}
-  - component: {fileID: 688279645217555982}
   - component: {fileID: 2537960347011012743}
   - component: {fileID: 6013422229957934256}
   m_Layer: 0
@@ -1781,24 +1780,6 @@ Transform:
   - {fileID: 8873294581012460523}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &688279645217555982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7881238259780738370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354a79608958c01489662a3b212f699f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txtPhase: {fileID: 7007399677645686370}
-  txtScore: {fileID: 2962530865548948320}
-  meteorPref: {fileID: 4440174507635501631, guid: 2a8bb470adc03fa49b47de61b18e038a, type: 3}
-  enemies:
-  - {fileID: 4824955680098206816, guid: 9948dcc2685bc79419d5ecc7d3060f29, type: 3}
-  - {fileID: 9092701276891292612, guid: f6aeaeecca38c624c93593fe6582a2f9, type: 3}
 --- !u!114 &2537960347011012743
 MonoBehaviour:
   m_ObjectHideFlags: 0

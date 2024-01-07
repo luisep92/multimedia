@@ -58,15 +58,16 @@ public abstract class BossPhase : MonoBehaviour
 
 
 
-    protected bool IsNear()
+    protected bool IsNear(bool onlyPlayer = false)
     {
         if (Vector2.Distance(transform.position, player.position) < 1.5f)
             return true;
 
+        if (onlyPlayer)
+            return false;
 
         if (others == null)
             return false;
-
 
         foreach (Transform go in others)
         {

@@ -63,6 +63,7 @@
     <Compile Include="Assets\GameAssets\Scripts\Bullet.cs" />
     <Compile Include="Assets\GameAssets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\GameAssets\Scripts\BossRay.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\LightRay.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Enemy.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Player.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Level1Manager.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\GameAssets\Scripts\EnemyBoss.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Parallax.cs" />
     <Compile Include="Assets\GameAssets\Scripts\BossPhaseDash.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\Test.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Level2Manager.cs" />
   </ItemGroup>
   <ItemGroup>

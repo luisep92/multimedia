@@ -8,11 +8,18 @@ public class Level2Manager : LevelManager
     protected override void Start()
     {
         base.Start();
+        StartCoroutine(StartMusicCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private IEnumerator StartMusicCoroutine()
+    {
+        yield return new WaitForSeconds(6f);
+        StartMusic();
     }
 }

@@ -64,17 +64,19 @@ public class BossPhaseDash : BossPhase
         Destroy(Instantiate(appearParticle, transform.position, Quaternion.identity), 2f);
     }
 
-    private void MovePosition()
+    private void MovePosition(int n = 20)
     {
+        bool onlyPlayer = (n - 1) <= 0;
+        n--;
         float r = Random.Range(0f, 1f) >= 0.5f ? -1 : 1;
         float x = -r * limit;
         float y = Player.Instance.transform.position.y;
         transform.position = new Vector3(x, y, 0);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, 45 * -r));
         direction = r;
-
-        if (IsNear())
-            MovePosition();
+        
+        if (IsNear(onlyPlayer))
+            MovePosition(n);
     }
 
     IEnumerator Attack()

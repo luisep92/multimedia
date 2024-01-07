@@ -7,16 +7,30 @@ using UnityEngine;
 
 public class EnemyBoss : Enemy
 {
+    private enum States { IDLE, ATTACKING }
+
     public List<Transform> others;
+    private States _state = States.IDLE;
     private BossPhase[] attacks;
-   
+
+    private States State
+    {
+        get => _state;
+        set
+        {
+            if (value == States.ATTACKING)
+                ChangeAttack(0f);
+            _state = value;
+        }
+    }
 
     protected override void Start()
     {
         base.Start();
         attacks = GetComponents<BossPhase>();
         Health = 20;
-        ChangeAttack(0f);
+        //StartCoroutine(StartAnimation());
+
     }
 
     protected override void Attack()
@@ -26,6 +40,7 @@ public class EnemyBoss : Enemy
 
     protected override void Die()
     {
+        Destroy(Instantiate(dieParticle, transform.position, transform.rotation), 3);
         Destroy(gameObject);
     }
 
@@ -36,8 +51,8 @@ public class EnemyBoss : Enemy
 
     public override void GetDamage(int damage)
     {
-        base.GetDamage(damage);
         aSource.PlayOneShot(sounds[0]);
+        base.GetDamage(damage);
     }
 
     public void ChangeAttack(float t)
@@ -72,5 +87,18 @@ public class EnemyBoss : Enemy
         {
             t.GetComponent<EnemyBoss>().others.Remove(this.transform);
         }
+    }
+
+    private IEnumerator StartAnimation()
+    {
+        yield return new WaitForSeconds(6f);
+        State = States.ATTACKING;
+    }
+
+
+    public void SetAttackState()
+    {
+        GetComponent<Animator>().enabled = false;
+        State = States.ATTACKING;
     }
 }
