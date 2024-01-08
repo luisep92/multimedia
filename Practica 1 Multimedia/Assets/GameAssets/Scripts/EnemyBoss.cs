@@ -28,7 +28,6 @@ public class EnemyBoss : Enemy
     {
         base.Start();
         attacks = GetComponents<BossPhase>();
-        Health = 20;
         //StartCoroutine(StartAnimation());
 
     }

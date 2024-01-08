@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Xml.Schema;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scene = UnityEngine.SceneManagement.Scene;
@@ -15,14 +9,14 @@ public class GameManager : MonoBehaviour
     public bool IsPlayerAlive { get; set; }
     public string CurrentLevel { get; set; }
     private LevelManager levelManager;
-    private int score;
+    private int _score;
 
     public int Score 
     {
-        get => score;
+        get => _score;
         set
         {
-            score = value;
+            _score = value;
             if (levelManager != null)
                 levelManager.Notify();
         }
@@ -31,7 +25,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // Add OnSceneLoaded() to sceneLoaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
+
         if (Instance != null)
             Destroy(this.gameObject);
         else
