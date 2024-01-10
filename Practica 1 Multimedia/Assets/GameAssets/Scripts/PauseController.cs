@@ -24,12 +24,14 @@ public class PauseController : MonoBehaviour
         {
             isPaused = false;
             pausePanel.SetActive(false);
+            Player.Instance.Enable();
             Time.timeScale = 1f;
         }
         else
         {
             isPaused = true;
             pausePanel.SetActive(true);
+            Player.Instance.Disable();
             Time.timeScale = 0.0001f;
         }
     }

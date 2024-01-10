@@ -123,18 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &393782609 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
-  m_PrefabInstance: {fileID: 9182150344074441966}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd846dc1d2f87b40ac55b244f02c74c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &872098543
+--- !u!1 &633754468
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,9 +131,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 872098546}
-  - component: {fileID: 872098545}
-  - component: {fileID: 872098544}
+  - component: {fileID: 633754471}
+  - component: {fileID: 633754470}
+  - component: {fileID: 633754469}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -152,13 +141,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &872098544
+--- !u!114 &633754469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872098543}
+  m_GameObject: {fileID: 633754468}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
@@ -172,13 +161,13 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &872098545
+--- !u!114 &633754470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872098543}
+  m_GameObject: {fileID: 633754468}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
@@ -187,13 +176,13 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!4 &872098546
+--- !u!4 &633754471
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872098543}
+  m_GameObject: {fileID: 633754468}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -294,6 +283,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907120313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2537960347011012743, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+  m_PrefabInstance: {fileID: 6378959948323705136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4ce29c76e137845ba7b277eba77389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1911053706
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +649,15 @@ PrefabInstance:
     - target: {fileID: 5493392805392017435, guid: eee53528414250d4e90f1189f8c10123, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 393782609}
+      objectReference: {fileID: 1907120313}
+    - target: {fileID: 5493392805392017435, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BtnGodMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 5493392805392017435, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7881238259780738370, guid: eee53528414250d4e90f1189f8c10123, type: 3}
       propertyPath: m_Name
       value: LevelManager
@@ -786,5 +794,5 @@ SceneRoots:
   - {fileID: 9182150344074441966}
   - {fileID: 1911053709}
   - {fileID: 6378959948323705136}
-  - {fileID: 872098546}
   - {fileID: 8591388253388518242}
+  - {fileID: 633754471}

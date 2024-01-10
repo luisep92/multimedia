@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public abstract class LevelManager : MonoBehaviour
 {
-    protected float sceneLimit;
     [SerializeField] TMP_Text txtScore;
     [SerializeField] GameObject meteorPref;
+    protected float sceneLimit;
+
 
     // Define how the phase end
     protected abstract bool PhaseEnded();

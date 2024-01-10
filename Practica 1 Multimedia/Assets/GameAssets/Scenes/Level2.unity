@@ -132,6 +132,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1225205679}
     m_Modifications:
     - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: dieParticle
       value: 
       objectReference: {fileID: 946261759094494737, guid: e6557807313516a489548dbe9e67bb6e, type: 3}
@@ -205,6 +209,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 509882948}
     m_Modifications:
+    - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: dieParticle
       value: 
@@ -370,10 +378,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1895871825588148127, guid: 31dff306425f78d46b9a2e710799c153, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5869825755179503308, guid: 31dff306425f78d46b9a2e710799c153, type: 3}
       propertyPath: m_Name
       value: LevelManager 2
@@ -514,6 +518,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1173620592}
     m_Modifications:
+    - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: dieParticle
       value: 
