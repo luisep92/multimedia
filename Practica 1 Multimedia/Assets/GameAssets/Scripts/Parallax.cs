@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 public class Parallax : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public float Speed;
     private Transform[] tiles;
     private float bottomPoint;
     private float height;
@@ -22,7 +22,7 @@ public class Parallax : MonoBehaviour
         // Move tiles down, recolocate if needed.
         for(int i = 0; i < tiles.Length; i++)
         {
-            float quantity = -speed * Time.deltaTime;
+            float quantity = -Speed * Time.deltaTime;
             tiles[i].Translate(0, quantity, 0);
             if (tiles[i].position.y <= bottomPoint)
                 MoveToTop(tiles[i], i, quantity);

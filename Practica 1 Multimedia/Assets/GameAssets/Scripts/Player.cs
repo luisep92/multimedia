@@ -10,42 +10,46 @@ public class Player : MonoBehaviour, IDamageable
 
     public static Player Instance;
 
-    [SerializeField] float speed;
-    [SerializeField] private bool godMode;
-    [SerializeField] GameObject bullet;
-    [SerializeField] AudioClip[] sounds;
-    private Camera mainCamera;
+    [SerializeField] private float speed;
+    [SerializeField] private bool _godMode;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private AudioClip[] sounds;
+    [SerializeField] private int maxHealth = 5;
     private State state = State.MOVING;
-    private bool canDash = true;
-    private Rigidbody2D rb;
-    private int maxHealth = 5;
-    private int currentHealth = 5;
+    private Camera mainCamera;
     private List<GameObject> UIHealth = new();
     private TrailRenderer tren;
     private AudioSource aSource;
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private bool canDash = true;
+    private bool _isDisabled = false;
+    private int _currentHealth;
 
+    public bool IsDisabled => _isDisabled;
 
     private int CurrentHealth
     {
-        get => currentHealth;
+        get => _currentHealth;
         set
         {
-            currentHealth = value;
+            _currentHealth = value;
             if (value <= 0)
                 Die();
         }
     }
 
-    private bool GodMode
+    public bool GodMode
     {
-        get { return godMode; }
-        set 
+        get => _godMode;
+        private set 
         { 
-            godMode = value; 
+            _godMode = value; 
             if (value == false) 
                 ChangePlayerAlpha(1); 
         }
     }
+
 
     private void Awake()
     {
@@ -55,23 +59,23 @@ public class Player : MonoBehaviour, IDamageable
 
         tren = GetComponent<TrailRenderer>();
         aSource = GetComponent<AudioSource>();
-    }
-
-    void Start()
-    {
-        foreach (Transform t in GameObject.Find("Content").transform)
-            UIHealth.Add(t.gameObject);
+        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         mainCamera = Camera.main;
+        SetUI();
+        CurrentHealth = maxHealth;
     }
 
     void Update()
     {
-        Shoot();
-
-        if (godMode)
+        if (GodMode)
             Blink();
 
+        if (IsDisabled)
+            return;
+
+        LookAtMouse();
+        Shoot();
         if (Input.GetButtonDown("Dash") && canDash)
             StartCoroutine(Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
     }
@@ -79,6 +83,9 @@ public class Player : MonoBehaviour, IDamageable
     // Move here because it's done by rigidbody.
     private void FixedUpdate()
     {
+        if (IsDisabled)
+            return;
+
         if (state == State.MOVING)
             Move();
     }
@@ -88,7 +95,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity);
+            Instantiate(bullet, transform.position + (transform.up * 0.5f), transform.rotation);
             aSource.PlayOneShot(sounds[1]);
         }
     }
@@ -108,18 +115,26 @@ public class Player : MonoBehaviour, IDamageable
             return;
 
         aSource.PlayOneShot(sounds[0]);
-        StartCoroutine(Shake(0.1f, 30f));
+        StartCoroutine(ShakeCamera(0.1f, 40f));
+        StartCoroutine(EnterGodMode(1f));
         for (int i = 0; i < damage; i++)
         {
             if(CurrentHealth > 0)
             {
                 CurrentHealth -= 1;
-                UIHealth[maxHealth - CurrentHealth - 1].SetActive(false);
+                UIHealth[CurrentHealth].SetActive(false);
             }
         }
-        StartCoroutine(EnterGodMode(1f));
     }
 
+    private void LookAtMouse()
+    {
+        Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mouseScreenPosition - (Vector2)transform.position).normalized;
+        transform.up = direction;
+    }
+
+    // F
     private void Die()
     {
         GameManager.Instance.IsPlayerAlive = false;
@@ -127,15 +142,14 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     // Character alpha changes between 0.2 - 1 on time.
-    void Blink()
+    void Blink(float speed = 7)
     {
-        ChangePlayerAlpha(Mathf.PingPong(Time.time * 7, 1) + 0.2f);
+        ChangePlayerAlpha(Mathf.PingPong(Time.time * speed, 1) + 0.2f);
     }
 
     // Change player alpha.
     void ChangePlayerAlpha(float value)
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Color myNewColor = sr.color;
         myNewColor.a = value;
         sr.color = myNewColor;
@@ -149,7 +163,8 @@ public class Player : MonoBehaviour, IDamageable
         GodMode = false;
     }
 
-    public IEnumerator Dash(float horizontal, float vertical)
+    // Character dash
+    public IEnumerator Dash(float horizontal, float vertical, float cooldown = 0.4f)
     {
         state = State.DASHING;
         canDash = false;
@@ -160,10 +175,11 @@ public class Player : MonoBehaviour, IDamageable
         StartCoroutine(VanishTrail(0f));
         rb.velocity = Vector2.zero;
         state = State.MOVING;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(cooldown - 0.2f);
         canDash = true;
     }
 
+    // Lower trail on time
     private IEnumerator VanishTrail(float t)
     {
         if(t >= 0.2f)
@@ -177,7 +193,8 @@ public class Player : MonoBehaviour, IDamageable
         StartCoroutine(VanishTrail(t + Time.deltaTime));
     }
 
-    private IEnumerator Shake(float t, float intensity = 10)
+    // Camera shake
+    private IEnumerator ShakeCamera(float t, float intensity = 10)
     {
         float rx = Random.Range(-1f, 1f);
         float ry = Random.Range(-1f, 1f);
@@ -187,8 +204,37 @@ public class Player : MonoBehaviour, IDamageable
         yield return new WaitForEndOfFrame();
 
         if (t > 0f)
-            StartCoroutine(Shake(t, intensity));
+            StartCoroutine(ShakeCamera(t, intensity));
         else
             mainCamera.transform.position = startPos;
+    }
+
+    // UI components (Life)
+    private void SetUI()
+    {
+        Transform cont = GameObject.Find("Content").transform;
+        GameObject heart = cont.GetChild(0).gameObject;
+        UIHealth.Add(heart);
+        for (int i = 1; i < maxHealth; i++)
+        {
+            UIHealth.Add(Instantiate(heart, cont));
+        }
+    }
+
+    // Disables player control
+    public void Disable()
+    {
+        _isDisabled = true;
+    }
+
+    // Enables player control
+    public void Enable()
+    {
+        _isDisabled = false;
+    }
+
+    public void SwitchGodMode()
+    {
+        GodMode = !GodMode;
     }
 }

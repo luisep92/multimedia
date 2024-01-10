@@ -21,6 +21,7 @@ public class BossRay : MonoBehaviour
         t += Time.deltaTime;
         if (t > 0.4f)
         {
+            // Ray moves
             float mod = Time.deltaTime * 3f;
             transform.Translate(-transform.up * Time.deltaTime * speed, Space.World);
             if (sren.size.x > 0)
@@ -35,6 +36,7 @@ public class BossRay : MonoBehaviour
         }
         else
         {
+            // Ray grows up
             float mod = speed * Time.deltaTime;
             sren.size = new Vector2(sren.size.x, sren.size.y + mod);
             // Adjust collider

@@ -18,13 +18,13 @@ public class BossPhaseDash : BossPhase
         base.Awake();
         tRen = GetComponent<TrailRenderer>();
         col = GetComponent<CircleCollider2D>();
+        speed = boss.Speed;
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        speed = GetComponent<Enemy>().Speed;
     }
 
     private void Update()

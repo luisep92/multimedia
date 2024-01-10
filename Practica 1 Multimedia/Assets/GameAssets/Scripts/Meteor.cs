@@ -10,6 +10,7 @@ public class Meteor : MonoBehaviour
     float startY = 6.3f;
     Vector3 direction;
 
+
     // Start is called before the first frame update
     void Start()
     {

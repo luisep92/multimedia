@@ -32,14 +32,8 @@ public abstract class BossPhase : MonoBehaviour
         others = boss.others;
     }
 
-
     protected virtual void Start()
     {
-    }
-
-    protected virtual void OnEnable()
-    {
-       
 
     }
 
@@ -56,8 +50,7 @@ public abstract class BossPhase : MonoBehaviour
         sRen.color = myNewColor;
     }
 
-
-
+    // Check if there are other bosses or player near
     protected bool IsNear(bool onlyPlayer = false)
     {
         if (Vector2.Distance(transform.position, player.position) < 1.5f)
@@ -76,6 +69,11 @@ public abstract class BossPhase : MonoBehaviour
         }
 
         return false;
+    }
+
+    protected virtual void OnEnable() 
+    {
+    
     }
 }
 

@@ -33,6 +33,7 @@ public class EnemyShooter : Enemy
         Destroy(gameObject);
     }
 
+    // Shoot between 0.3-2 seconds
     private IEnumerator Shoot()
     {
         yield return new WaitForSeconds(Random.Range(0.3f, 2f));
@@ -45,8 +46,11 @@ public class EnemyShooter : Enemy
     {
         transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
 
-        if (transform.position.x <= xMin || transform.position.x >= xMax)
+        if ((transform.position.x <= xMin && speed > 0) || (transform.position.x >= xMax && speed < 0))
+        {
             speed *= -1;
+            transform.Translate(new Vector3(0, 1f, 0));
+        }
     }
 
     protected override void Attack()

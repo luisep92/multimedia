@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Level1Manager : LevelManager
 {
@@ -18,19 +19,18 @@ public class Level1Manager : LevelManager
     protected override void Start()
     {
         base.Start();
+
+        GameManager.Instance.Score = 0;
         txtPhase.gameObject.SetActive(false);
         waves = GetWaves();
         StartCoroutine(CheckPhaseEnded());
         StartCoroutine(SpawnMeteor());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+   
     // Waves of enemies.
+    // 0 = Shooter
+    // 1 = Kamikaze
     private List<GameObject[]> GetWaves()
     {
         List<GameObject[]> ret = new()
@@ -44,49 +44,52 @@ public class Level1Manager : LevelManager
         return ret;
     }
 
-    // Instantiate enemies.
+    // Instantiate wave. 
     private void InstantiateWave()
     {
         GameObject[] currentWave = waves[wave];
 
         for (int i = 0; i < currentWave.Length; i++)
         {
-            float t = i / (float)(currentWave.Length - 1);
-            float posX = Mathf.Lerp(-sceneLimit, sceneLimit, t);
+            float interpolator = i / (float)(currentWave.Length - 1);
+            float posX = Mathf.Lerp(-sceneLimit, sceneLimit, interpolator);
             Vector3 pos = new(posX, 3.5f, 0);
             Instantiate(currentWave[i], pos, Quaternion.Euler(0, 0, 180));
         }
     }
 
     // Plays text animation, then instance wave
-    private IEnumerator ChangePhase()
+    private IEnumerator ChangePhase(float animTime = 3.5f)
     {
         txtPhase.gameObject.SetActive(true);
         txtPhase.text = "PHASE " + (wave + 1);
         txtPhase.GetComponent<Animator>().Play("txtPhase");
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(animTime);
         txtPhase.gameObject.SetActive(false);
         InstantiateWave();
         wave++;
     }
 
-    private bool PhaseEnded()
+    protected override bool PhaseEnded()
     {
         return GameObject.FindWithTag("Enemy") == null;
     }
 
-    IEnumerator CheckPhaseEnded()
+    // Check if phase ended ecery 5 seconds
+    IEnumerator CheckPhaseEnded(float cooldown = 5f)
     {
         if (PhaseEnded())
         {
             if (wave >= waves.Count)
             {
-                SceneManager.LoadScene("WinLose");
                 GameManager.Instance.CurrentLevel = "Level2";
+                SceneManager.LoadScene("WinLose");
             }
             StartCoroutine(ChangePhase());
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(cooldown);
         StartCoroutine(CheckPhaseEnded());
     }
+
+
 }

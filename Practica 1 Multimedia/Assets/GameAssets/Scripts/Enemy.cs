@@ -46,6 +46,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         StartCoroutine(BlinkColor(0.1f, Color.red));
     }
 
+    // Change color by specified time
     private IEnumerator BlinkColor(float time, Color color)
     {
         ChangeColor(color);
@@ -56,6 +57,19 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected void ChangeColor(Color c)
     {
         GetComponent<SpriteRenderer>().material.color = c;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player p = Player.Instance;
+            p.GetDamage(1);
+            Vector3 direction = transform.position - p.transform.position;
+            float dirX = direction.x < 0 ? 1 : -1;
+            float dirY = direction.y > 0 ? 1 : -1;
+            p.StartCoroutine(p.Dash(dirX, dirY));
+        }
     }
 
     protected virtual void OnDestroy()

@@ -5,11 +5,23 @@ using Scene = UnityEngine.SceneManagement.Scene;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    public bool IsPlayerAlive { get; set; }
-    public string CurrentLevel { get; set; }
     private LevelManager levelManager;
+    private string _currentLevel = "Level1";
     private int _score;
+    private bool _isPlayerAlive = true;
+
+    private LevelManager LevelManager => levelManager;
+
+    public bool IsPlayerAlive 
+    {
+        get => _isPlayerAlive;
+        set => _isPlayerAlive = value;
+    }
+
+    public string CurrentLevel { 
+        get => _currentLevel;
+        set => _currentLevel = value;
+    }
 
     public int Score 
     {
@@ -25,24 +37,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Add OnSceneLoaded() to sceneLoaded event
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
         if (Instance != null)
             Destroy(this.gameObject);
         else
             Instance = this;
-
         DontDestroyOnLoad(this.gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    // Default state
     public void InitDefaultData()
     {
-        Score = 0;
         IsPlayerAlive = true;
         CurrentLevel = SceneManager.GetActiveScene().name;
     }
 
+    // Restart last level
     public void RestartLevel()
     {
         SceneManager.LoadScene(CurrentLevel);
@@ -53,6 +63,7 @@ public class GameManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
     }
 
+    // Get active wave of enemies
     public int GetWave()
     {
         var lm = (Level1Manager)levelManager;

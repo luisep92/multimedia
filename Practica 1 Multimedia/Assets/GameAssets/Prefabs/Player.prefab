@@ -164,11 +164,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  _godMode: 0
   bullet: {fileID: 5067133991905382192, guid: 7e8aadb2d9d1b954988d78c8d94dd40b, type: 3}
   sounds:
   - {fileID: 8300000, guid: debbcf31b7f733f4c96007022a8cb597, type: 3}
   - {fileID: 8300000, guid: 334a00525db58984bb1b07f1045980a7, type: 3}
   - {fileID: 8300000, guid: c17a7c9c5b04d2d408c63263822e5f10, type: 3}
+  maxHealth: 12
 --- !u!96 &7343078247680011831
 TrailRenderer:
   serializedVersion: 3
@@ -267,7 +269,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0

@@ -13,23 +13,31 @@ public class WinLoseController : MonoBehaviour
     [SerializeField] TMP_Text txtBtn;
     [SerializeField] Image background;
   
+    // Setup scene
     void Start()
     {
         txtScore.text = "Score: " + GameManager.Instance.Score;
-        if (GameManager.Instance.IsPlayerAlive)
-            return;
-        background. color = new Color(1f, 0.35f, 0.35f, 1);
-        txtBtn.text = "Restart";
-        txtMain.text = "YOU DIED";
+        if (!GameManager.Instance.IsPlayerAlive)
+        {
+            background.color = new Color(1f, 0.35f, 0.35f, 1);
+            txtBtn.text = "Restart";
+            txtMain.text = "YOU DIED";
+        }
+
+        if (GameManager.Instance.CurrentLevel == "MainMenu")
+        {
+            txtBtn.text = "Main Menu";
+            GameManager.Instance.Score = 0;
+        }
     }
 
+    // Defines next scene button
     public void MainBtn()
     {
-        // TODO: Change main menu for next scene
         if (GameManager.Instance.IsPlayerAlive)
         {
             string cl = GameManager.Instance.CurrentLevel;
-            if (cl == "Level1" || cl == "Level2") // TODO: add on kill boss a path to menu
+            if (cl == "Level1" || cl == "Level2")
                 SceneManager.LoadScene(GameManager.Instance.CurrentLevel);
             else
                 SceneManager.LoadScene("MainMenu");

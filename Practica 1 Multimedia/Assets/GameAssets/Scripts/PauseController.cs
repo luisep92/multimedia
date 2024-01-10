@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseController : MonoBehaviour
 {
@@ -47,5 +49,14 @@ public class PauseController : MonoBehaviour
     {
         SwitchPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void BtnGodMode()
+    {
+        Player player = Player.Instance;
+        player.SwitchGodMode();
+        Color nextColor = player.GodMode ? new Color(64f / 255f, 1f, 225f / 255f) : Color.white;
+        Button button = GameObject.Find("btnGodMode").GetComponent<Button>();
+        button.image.color = nextColor;
     }
 }

@@ -9,12 +9,12 @@ public class Crosshair : MonoBehaviour
 
     [HideInInspector] public EnemyKamikaze parent;
     private State state = State.MOVING;
-    private float speed = 5f;
-    private float timeToVanish = 1f;
     private Transform target;
     private Material material;
-    private float t = 0f;
     private AudioSource aSource;
+    private float speed = 5f;
+    private float timeToVanish = 1f;
+    private float t = 0f;
 
     private State CState
     {
@@ -79,10 +79,11 @@ public class Crosshair : MonoBehaviour
             CState = State.TARGETED;
     }
 
-    private IEnumerator BipSound()
+    // Sounds every 0.8 seconds
+    private IEnumerator BipSound(float cooldown = 0.8f)
     {
         aSource.Play();
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(cooldown);
         if (CState == State.MOVING)
             StartCoroutine(BipSound());
     }

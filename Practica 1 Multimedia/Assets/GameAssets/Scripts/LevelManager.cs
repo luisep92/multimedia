@@ -9,20 +9,26 @@ public abstract class LevelManager : MonoBehaviour
     protected float sceneLimit;
     [SerializeField] TMP_Text txtScore;
     [SerializeField] GameObject meteorPref;
-    
+
+    // Define how the phase end
+    protected abstract bool PhaseEnded();
 
     protected virtual void Start()
     {
         GameManager.Instance.InitDefaultData();
         sceneLimit = GetLimits();;
+        txtScore.text = GameManager.Instance.Score.ToString();
+
     }
 
     // Get limits of scene based in background image.
     protected float GetLimits()
     {
+        Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0f));
         return (GameObject.Find("Background_game").GetComponent<SpriteRenderer>().size.x / 2) - 1;
     }
 
+    // Spawn a meteor between 3 and 10 seconds
     protected IEnumerator SpawnMeteor()
     {
         float t = Random.Range(3, 10);
@@ -31,11 +37,13 @@ public abstract class LevelManager : MonoBehaviour
         StartCoroutine(SpawnMeteor());
     }
 
+    // Update score
     public void Notify()
     {
         txtScore.text = "Score: " + GameManager.Instance.Score;
     }
 
+    // Start background music
     protected void StartMusic()
     {
         GetComponent<AudioSource>().Play();

@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dieParticle: {fileID: 946261759094494737, guid: e6557807313516a489548dbe9e67bb6e, type: 3}
   health: 3
-  speed: 1
+  speed: 1.5
   sounds:
   - {fileID: 8300000, guid: 334a00525db58984bb1b07f1045980a7, type: 3}
   - {fileID: 8300000, guid: c90ed89a4cf2d1d4f8f49d9e6518ec51, type: 3}

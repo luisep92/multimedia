@@ -12,6 +12,7 @@ public class EnemyBoss : Enemy
     public List<Transform> others;
     private States _state = States.IDLE;
     private BossPhase[] attacks;
+    private Level2Manager levelManager;
 
     private States State
     {
@@ -28,8 +29,7 @@ public class EnemyBoss : Enemy
     {
         base.Start();
         attacks = GetComponents<BossPhase>();
-        //StartCoroutine(StartAnimation());
-
+        levelManager = FindObjectOfType<Level2Manager>();
     }
 
     protected override void Attack()
@@ -40,6 +40,7 @@ public class EnemyBoss : Enemy
     protected override void Die()
     {
         Destroy(Instantiate(dieParticle, transform.position, transform.rotation), 3);
+        levelManager.bosses.Remove(this);
         Destroy(gameObject);
     }
 
@@ -50,7 +51,7 @@ public class EnemyBoss : Enemy
 
     public override void GetDamage(int damage)
     {
-        aSource.PlayOneShot(sounds[0]);
+        PlaySound(sounds[0]);
         base.GetDamage(damage);
     }
 
@@ -67,19 +68,6 @@ public class EnemyBoss : Enemy
         attacks[n].enabled = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Player p = Player.Instance;
-            p.GetDamage(1);
-            Vector3 direction = transform.position - p.transform.position;
-            float dirX = direction.x < 0 ? 1 : -1;
-            float dirY = direction.y > 0 ? 1 : -1;
-            p.StartCoroutine(p.Dash(dirX, dirY));
-        }     
-    }
-
     protected override void OnDestroy()
     {
         foreach (Transform t in others)
@@ -88,16 +76,9 @@ public class EnemyBoss : Enemy
         }
     }
 
-    private IEnumerator StartAnimation()
-    {
-        yield return new WaitForSeconds(6f);
-        State = States.ATTACKING;
-    }
-
-
     public void SetAttackState()
     {
-        GetComponent<Animator>().enabled = false;
         State = States.ATTACKING;
+        GetComponent<Animator>().enabled = false;
     }
 }
