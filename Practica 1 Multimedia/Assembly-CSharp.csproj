@@ -83,6 +83,7 @@
     <Compile Include="Assets\GameAssets\Scripts\Parallax.cs" />
     <Compile Include="Assets\DifficultySelector.cs" />
     <Compile Include="Assets\GameAssets\Scripts\BossPhaseDash.cs" />
+    <Compile Include="Assets\UIBoss.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Level2Manager.cs" />
   </ItemGroup>
   <ItemGroup>

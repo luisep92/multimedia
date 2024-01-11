@@ -9,6 +9,7 @@ public class EnemyBoss : Enemy
 {
     private enum States { IDLE, ATTACKING }
 
+    [SerializeField] private UIBoss UI;
     public List<Transform> others;
     private States _state = States.IDLE;
     private BossPhase[] attacks;
@@ -41,6 +42,8 @@ public class EnemyBoss : Enemy
     {
         Destroy(Instantiate(dieParticle, transform.position, transform.rotation), 3);
         levelManager.bosses.Remove(this);
+        if (UI != null)
+            UI.OnDie();
         Destroy(gameObject);
     }
 
@@ -53,6 +56,8 @@ public class EnemyBoss : Enemy
     {
         PlaySound(sounds[0]);
         base.GetDamage(damage);
+        if (UI != null)
+            UI.OnDamage(Health);
     }
 
     public void ChangeAttack(float t)

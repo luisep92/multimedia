@@ -11,7 +11,6 @@ public abstract class LevelManager : MonoBehaviour
     [SerializeField] GameObject meteorPref;
     protected float sceneLimit;
 
-
     // Define how the phase end
     protected abstract bool PhaseEnded();
 
@@ -20,7 +19,6 @@ public abstract class LevelManager : MonoBehaviour
         GameManager.Instance.InitDefaultData();
         sceneLimit = GetLimits();;
         txtScore.text = GameManager.Instance.Score.ToString();
-
     }
 
     // Get limits of scene based in background image.
@@ -48,6 +46,8 @@ public abstract class LevelManager : MonoBehaviour
     // Start background music
     protected void StartMusic()
     {
-        GetComponent<AudioSource>().Play();
+        var aSource = GetComponent<AudioSource>();
+        if(aSource != null)
+            aSource.Play();
     }
 }

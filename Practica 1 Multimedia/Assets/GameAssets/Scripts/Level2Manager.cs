@@ -47,11 +47,13 @@ public class Level2Manager : LevelManager
         StartCoroutine(CheckPhaseEnded());
     }
 
+    // Kill bosses depending on the difficulty
     private IEnumerator ApplyDifficulty()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         if (GameManager.Instance.Difficulty <= 2)
             bosses[2].GetDamage(bosses[2].Health);
+        yield return new WaitForSeconds(2f);
         if (GameManager.Instance.Difficulty <= 1)
             bosses[1].GetDamage(bosses[1].Health);
     }

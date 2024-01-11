@@ -138,14 +138,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca15403c0c693946aab826cb4f6d4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieParticle: {fileID: 0}
-  health: 1
+  dieParticle: {fileID: 946261759094494737, guid: e6557807313516a489548dbe9e67bb6e, type: 3}
+  health: 20
   speed: 26.38
   sounds:
   - {fileID: 8300000, guid: c90ed89a4cf2d1d4f8f49d9e6518ec51, type: 3}
   others:
   - {fileID: 0}
   - {fileID: 0}
+  UI: {fileID: 0}
 --- !u!114 &3480040500910513433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +394,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4c3bc670c13ebd940be79858a5066009, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

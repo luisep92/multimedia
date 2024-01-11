@@ -80,7 +80,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected void PlaySound(AudioClip clip)
     {
-        if (aSource.isActiveAndEnabled)
+        if (aSource != null && aSource.isActiveAndEnabled)
             aSource.PlayOneShot(clip);
     }
 }
