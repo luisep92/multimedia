@@ -999,7 +999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6459866893726691546, guid: 178b49d046ddb084dbffa8ae1de4f051, type: 3}
       propertyPath: Difficulty
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6692490055230201912, guid: 178b49d046ddb084dbffa8ae1de4f051, type: 3}
       propertyPath: m_Name
