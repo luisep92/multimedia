@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Enemigo, el que dispara
+
 public class EnemyShooter : Enemy
 {
     [SerializeField] GameObject bullet;

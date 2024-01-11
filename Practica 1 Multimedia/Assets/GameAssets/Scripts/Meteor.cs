@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Controlador del meteorito
+
 public class Meteor : MonoBehaviour
 {
     float limit = 10f;
@@ -10,7 +13,7 @@ public class Meteor : MonoBehaviour
     float startY = 6.3f;
     Vector3 direction;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {

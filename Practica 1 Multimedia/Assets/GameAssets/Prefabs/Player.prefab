@@ -170,7 +170,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: debbcf31b7f733f4c96007022a8cb597, type: 3}
   - {fileID: 8300000, guid: 334a00525db58984bb1b07f1045980a7, type: 3}
   - {fileID: 8300000, guid: c17a7c9c5b04d2d408c63263822e5f10, type: 3}
-  maxHealth: 12
+  maxHealth: 5
 --- !u!96 &7343078247680011831
 TrailRenderer:
   serializedVersion: 3

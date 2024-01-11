@@ -5,6 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Luis Escolano Piquer
+// Selector de dificultad
+
 public class DifficultySelector : MonoBehaviour
 {
     [SerializeField] Button next;

@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
+// Luis Escolano Piquer
+// Encargado de gestionar el nivel 1
+
 public class Level1Manager : LevelManager
 {
     [SerializeField] TMP_Text txtPhase;

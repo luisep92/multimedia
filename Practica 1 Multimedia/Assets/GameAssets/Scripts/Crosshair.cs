@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Marca que lanzan los enemigos kamikaze
+
 public class Crosshair : MonoBehaviour
 {
     enum State { MOVING, TARGETED }

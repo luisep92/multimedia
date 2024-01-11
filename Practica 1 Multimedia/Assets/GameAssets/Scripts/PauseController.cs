@@ -5,11 +5,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Luis Escolano Piquer
+// Controlador de la pausa
+
 public class PauseController : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
     private bool isPaused = false;
-
+    private bool playerWasDisabled = false;
 
     // Update is called once per frame
     void Update()
@@ -24,14 +27,17 @@ public class PauseController : MonoBehaviour
         {
             isPaused = false;
             pausePanel.SetActive(false);
-            Player.Instance.Enable();
+            if (!playerWasDisabled)
+                Player.Instance.Enable();
             Time.timeScale = 1f;
         }
         else
         {
+            playerWasDisabled = Player.Instance.IsDisabled;
             isPaused = true;
             pausePanel.SetActive(true);
-            Player.Instance.Disable();
+            if (!playerWasDisabled)
+                Player.Instance.Disable();
             Time.timeScale = 0.0001f;
         }
     }

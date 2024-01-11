@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Luis Escolano Piquer
+// Interfaz de usuario del jefe
+
 public class UIBoss : MonoBehaviour
 {
     [SerializeField] private TMP_Text txtHP;

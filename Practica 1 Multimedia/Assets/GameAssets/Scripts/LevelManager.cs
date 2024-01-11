@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
+// Luis Escolano Piquer
+// Encargado de gestionar las cosas de un nivel
+
 public abstract class LevelManager : MonoBehaviour
 {
     [SerializeField] TMP_Text txtScore;
@@ -18,7 +21,7 @@ public abstract class LevelManager : MonoBehaviour
     {
         GameManager.Instance.InitDefaultData();
         sceneLimit = GetLimits();;
-        txtScore.text = GameManager.Instance.Score.ToString();
+        txtScore.text = "Score: " + GameManager.Instance.Score;
     }
 
     // Get limits of scene based in background image.

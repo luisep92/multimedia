@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Ataque del jefe enemigo que embiste
+
 public class BossPhaseDash : BossPhase
 {
     [SerializeField] GameObject appearParticle;

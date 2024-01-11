@@ -4,6 +4,8 @@ using System.Linq;
 using UnityEditorInternal;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Enemigo jefe
 
 public class EnemyBoss : Enemy
 {

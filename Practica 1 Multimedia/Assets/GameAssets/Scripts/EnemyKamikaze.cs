@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Enemigo, el que se inmola
+
 public class EnemyKamikaze : Enemy
 {
     public enum State { SEARCHING, MOVING }

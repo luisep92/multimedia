@@ -6,6 +6,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Base de ataque del jefe
+
 public abstract class BossPhase : MonoBehaviour
 {
     public enum BossState { IDLE, ATTACKING }

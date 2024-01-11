@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Luis Escolano Piquer
+// Controlador de la escena de ganar o perder
+
 public class WinLoseController : MonoBehaviour
 {
     [SerializeField] TMP_Text txtMain;

@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Scene = UnityEngine.SceneManagement.Scene;
 
+// Luis Escolano Piquer
+// Orquestador del juego
+
 public class GameManager : MonoBehaviour
 {
     [Range(1, 3)] public int Difficulty = 1;

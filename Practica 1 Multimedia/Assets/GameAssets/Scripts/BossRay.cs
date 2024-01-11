@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Controla el laser que disparan los jefes
+
 public class BossRay : MonoBehaviour
 {
     private float speed = 30f;

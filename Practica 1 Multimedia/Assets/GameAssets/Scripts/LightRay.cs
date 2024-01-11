@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Sin usar, iba a ser un tercer ataque de los jefes
+
 public class LightRay : MonoBehaviour
 {
     [SerializeField] SpriteRenderer backImage;

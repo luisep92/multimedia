@@ -1,5 +1,8 @@
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Si no limitamos el framerate, el juego consume todo lo que puede sin necesidad
+
 public class LimitFrameRate : MonoBehaviour
 {
     // Limit framerate, so the game does not get all system resources

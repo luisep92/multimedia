@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Ataque del jefe donde lanza el laser
+
 public class BossPhaseLaser : BossPhase
 {
     private enum Action { DISAPPEARING, MOVING, APPEARING, ATTACKING }

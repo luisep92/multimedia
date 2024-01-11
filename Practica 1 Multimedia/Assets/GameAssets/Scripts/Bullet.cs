@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Balas normales
+
 public class Bullet : MonoBehaviour
 {
     [SerializeField] List<string> ignoreTag = new();

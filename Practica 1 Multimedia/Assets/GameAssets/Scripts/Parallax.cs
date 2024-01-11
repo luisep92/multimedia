@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// Luis Escolano Piquer
+// Controla el scroll del fondo
+
 public class Parallax : MonoBehaviour
 {
     public float Speed;

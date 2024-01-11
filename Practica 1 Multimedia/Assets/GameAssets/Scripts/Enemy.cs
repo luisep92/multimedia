@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+// Clase base de enemigo
+
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] protected GameObject dieParticle;

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+// Luis Escolano Piquer
+// Todo lo relacionado con el jugador
+
 public class Player : MonoBehaviour, IDamageable
 {
     private enum State { IDLE, MOVING, DASHING }

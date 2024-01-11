@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Luis Escolano Piquer
+// Encargado de gestionar el nivel 2
+
 public class Level2Manager : LevelManager
 {
     public List<EnemyBoss> bosses;

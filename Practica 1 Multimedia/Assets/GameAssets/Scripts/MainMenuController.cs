@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Luis Escolano Piquer
+// Controlador del menu principal
+
 public class MainMenuController : MonoBehaviour
 {
     public void ButtonPlay()
