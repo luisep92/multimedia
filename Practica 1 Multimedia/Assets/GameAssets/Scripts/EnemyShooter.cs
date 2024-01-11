@@ -7,6 +7,8 @@ public class EnemyShooter : Enemy
     [SerializeField] GameObject bullet;
     protected float xMin = -8.75f;
     protected float xMax = 8.75f;
+    private float yMin = -4.8f;
+    private bool canShoot = true;
 
     protected override void Start()
     {
@@ -22,7 +24,7 @@ public class EnemyShooter : Enemy
 
     public override void GetDamage(int damage)
     {
-        PlaySound(sounds[1]);
+        PlaySound(Sounds[1]);
         base.GetDamage(damage);
     }
 
@@ -37,8 +39,9 @@ public class EnemyShooter : Enemy
     private IEnumerator Shoot()
     {
         yield return new WaitForSeconds(Random.Range(0.3f, 2f));
-        Instantiate(bullet, transform.position, transform.rotation);
-        PlaySound(sounds[0]);
+        if(canShoot)
+            Instantiate(bullet, transform.position, transform.rotation);
+        PlaySound(Sounds[0]);
         StartCoroutine(Shoot());
     }
 
@@ -56,5 +59,13 @@ public class EnemyShooter : Enemy
     protected override void Attack()
     {
         StartCoroutine(Shoot());
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (transform.position.y > yMin)
+            return;
+        Player.Instance.GetDamage(100);
+        Destroy(gameObject);
     }
 }

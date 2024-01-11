@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour, IDamageable
     private bool canDash = true;
     private bool _isDisabled = false;
     private int _currentHealth;
+    private bool aimActive;
 
     public bool IsDisabled => _isDisabled;
 
@@ -50,7 +53,6 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-
     private void Awake()
     {
         if (Instance != null)
@@ -66,6 +68,11 @@ public class Player : MonoBehaviour, IDamageable
         CurrentHealth = maxHealth;
     }
 
+    private void Start()
+    {
+        aimActive = GameManager.Instance.PlayerAim;
+    }
+
     void Update()
     {
         if (GodMode)
@@ -74,7 +81,9 @@ public class Player : MonoBehaviour, IDamageable
         if (IsDisabled)
             return;
 
-        LookAtMouse();
+        if (aimActive)
+            LookAtMouse();
+
         Shoot();
         if (Input.GetButtonDown("Dash") && canDash)
             StartCoroutine(Dash(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
@@ -138,6 +147,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Die()
     {
         GameManager.Instance.IsPlayerAlive = false;
+        GameManager.Instance.Score = 0;
         SceneManager.LoadScene("WinLose");
     }
 

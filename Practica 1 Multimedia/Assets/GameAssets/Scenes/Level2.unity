@@ -152,14 +152,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 117443094}
     - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
-      propertyPath: health
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
-      propertyPath: dieParticle
-      value: 
-      objectReference: {fileID: 946261759094494737, guid: e6557807313516a489548dbe9e67bb6e, type: 3}
-    - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: others.Array.data[0]
       value: 
       objectReference: {fileID: 291036970}
@@ -207,6 +199,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5533966099653846302, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7881183018165365058, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_Name
       value: Boss 3
@@ -234,6 +230,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2126521422}
     - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: others.Array.data[0]
       value: 
       objectReference: {fileID: 1701274778}
@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: others.Array.data[1]
       value: 
       objectReference: {fileID: 144086985}
+    - target: {fileID: 1722855773281956830, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
+      propertyPath: sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 60db16e6a59ff5047b31ebdf9b8c3f83, type: 3}
     - target: {fileID: 4348611076521191169, guid: 1453b82a4198b8a409d4b794ea22c10f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1001,6 +1005,10 @@ PrefabInstance:
       propertyPath: Difficulty
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6459866893726691546, guid: 178b49d046ddb084dbffa8ae1de4f051, type: 3}
+      propertyPath: cursorTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 95b4a756fd9f91a41ab55ef4a0aa619e, type: 3}
     - target: {fileID: 6692490055230201912, guid: 178b49d046ddb084dbffa8ae1de4f051, type: 3}
       propertyPath: m_Name
       value: GameManager

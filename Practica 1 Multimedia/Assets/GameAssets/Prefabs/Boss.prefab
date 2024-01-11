@@ -141,12 +141,13 @@ MonoBehaviour:
   dieParticle: {fileID: 946261759094494737, guid: e6557807313516a489548dbe9e67bb6e, type: 3}
   health: 20
   speed: 26.38
-  sounds:
+  Sounds:
   - {fileID: 8300000, guid: c90ed89a4cf2d1d4f8f49d9e6518ec51, type: 3}
+  - {fileID: 8300000, guid: 60db16e6a59ff5047b31ebdf9b8c3f83, type: 3}
+  UI: {fileID: 0}
   others:
   - {fileID: 0}
   - {fileID: 0}
-  UI: {fileID: 0}
 --- !u!114 &3480040500910513433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4b768f0cc9584734baeae8e600114afb, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.466
   m_Pitch: 1

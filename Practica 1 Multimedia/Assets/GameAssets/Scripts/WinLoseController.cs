@@ -19,7 +19,6 @@ public class WinLoseController : MonoBehaviour
         txtScore.text = "Score: " + GameManager.Instance.Score;
         if (!GameManager.Instance.IsPlayerAlive)
         {
-            background.color = new Color(1f, 0.35f, 0.35f, 1);
             txtBtn.text = "Restart";
             txtMain.text = "YOU DIED";
         }
@@ -44,5 +43,10 @@ public class WinLoseController : MonoBehaviour
         }
         else
             SceneManager.LoadScene(GameManager.Instance.CurrentLevel);
+    }
+
+    public void MenuBtn()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

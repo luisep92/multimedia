@@ -40,7 +40,7 @@ public class EnemyKamikaze : Enemy
     // Reduces health
     public override void GetDamage(int damage)
     {
-        PlaySound(sounds[1]);
+        PlaySound(Sounds[1]);
         base.GetDamage(damage);
     }
 
@@ -92,7 +92,7 @@ public class EnemyKamikaze : Enemy
 
     private IEnumerator MoveSound()
     {
-        PlaySound(sounds[0]);
+        PlaySound(Sounds[0]);
         float t = aSource.clip.length;
         yield return new WaitForSeconds(t);
         StartCoroutine(MoveSound());

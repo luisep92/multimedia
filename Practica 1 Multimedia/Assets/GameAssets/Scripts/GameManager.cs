@@ -5,13 +5,20 @@ using Scene = UnityEngine.SceneManagement.Scene;
 public class GameManager : MonoBehaviour
 {
     [Range(1, 3)] public int Difficulty = 1;
+    [SerializeField] Texture2D cursorTexture;
     public static GameManager Instance;
     private LevelManager levelManager;
     private string _currentLevel = "Level1";
     private int _score;
     private bool _isPlayerAlive = true;
-
+    private bool _playerAim = true;
     private LevelManager LevelManager => levelManager;
+
+    public bool PlayerAim
+    {
+        get => _playerAim;
+        set => _playerAim = value;
+    }
 
     public bool IsPlayerAlive 
     {
@@ -62,6 +69,7 @@ public class GameManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         levelManager = FindObjectOfType<LevelManager>();
+        SetCursor();
     }
 
     // Get active wave of enemies
@@ -69,5 +77,17 @@ public class GameManager : MonoBehaviour
     {
         var lm = (Level1Manager)levelManager;
         return lm.Wave;
+    }
+
+    private void SetCursor()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        Texture2D texture =  IsPlayScene(currentScene) ? cursorTexture : null;
+        Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+    }
+
+    public static bool IsPlayScene(string sceneName)
+    {
+        return sceneName.Substring(0, 5) == "Level";
     }
 }

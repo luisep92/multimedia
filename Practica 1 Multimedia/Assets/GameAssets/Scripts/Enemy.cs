@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected GameObject dieParticle;
     [SerializeField] private int health = 3;
     [SerializeField] protected float speed = 7f;
-    [SerializeField] protected AudioClip[] sounds;
+    public AudioClip[] Sounds;
     protected AudioSource aSource;
     protected int points = 10;
 
@@ -78,9 +78,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         GameManager.Instance.Score += points;
     }
 
-    protected void PlaySound(AudioClip clip)
+    public void PlaySound(AudioClip clip)
     {
-        if (aSource != null && aSource.isActiveAndEnabled)
+        if (clip == null || aSource == null)
+            return;
+
+        if (aSource.isActiveAndEnabled)
             aSource.PlayOneShot(clip);
     }
 }

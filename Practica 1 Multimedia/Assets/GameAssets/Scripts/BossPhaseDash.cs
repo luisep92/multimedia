@@ -79,10 +79,12 @@ public class BossPhaseDash : BossPhase
             MovePosition(n);
     }
 
+    // Appear | Move | End
     IEnumerator Attack()
     {
         Appear();
         yield return new WaitForSeconds(0.8f);
+        boss.PlaySound(boss.Sounds[1]);
         tRen.time = 0.2f;
         tRen.emitting = true;
         yield return new WaitForSeconds(1.2f);

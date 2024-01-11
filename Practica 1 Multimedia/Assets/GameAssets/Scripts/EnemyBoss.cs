@@ -40,6 +40,7 @@ public class EnemyBoss : Enemy
 
     protected override void Die()
     {
+        GameManager.Instance.Score += 300;
         Destroy(Instantiate(dieParticle, transform.position, transform.rotation), 3);
         levelManager.bosses.Remove(this);
         if (UI != null)
@@ -54,7 +55,7 @@ public class EnemyBoss : Enemy
 
     public override void GetDamage(int damage)
     {
-        PlaySound(sounds[0]);
+        PlaySound(Sounds[0]);
         base.GetDamage(damage);
         if (UI != null)
             UI.OnDamage(Health);
