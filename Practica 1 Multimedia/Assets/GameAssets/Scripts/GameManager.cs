@@ -4,6 +4,7 @@ using Scene = UnityEngine.SceneManagement.Scene;
 
 public class GameManager : MonoBehaviour
 {
+    [Range(1, 3)] public int Difficulty = 1;
     public static GameManager Instance;
     private LevelManager levelManager;
     private string _currentLevel = "Level1";

@@ -14,7 +14,7 @@ public class Level2Manager : LevelManager
         Player.Instance.Disable();
         StartCoroutine(StartAnimation());
         StartCoroutine(CheckPhaseEnded());
-
+        StartCoroutine(ApplyDifficulty());
     }
 
     // Start begin animation
@@ -45,5 +45,14 @@ public class Level2Manager : LevelManager
         }
         yield return new WaitForSeconds(5f);
         StartCoroutine(CheckPhaseEnded());
+    }
+
+    private IEnumerator ApplyDifficulty()
+    {
+        yield return new WaitForSeconds(3f);
+        if (GameManager.Instance.Difficulty <= 2)
+            bosses[2].GetDamage(bosses[2].Health);
+        if (GameManager.Instance.Difficulty <= 1)
+            bosses[1].GetDamage(bosses[1].Health);
     }
 }

@@ -11,10 +11,11 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected AudioSource aSource;
     protected int points = 10;
 
-    protected int Health
+
+    public int Health
     {
         get => health;
-        set
+        private set
         {
             health = value;
             if (health <= 0)
@@ -27,18 +28,18 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         get => speed;
         set => speed = value;
     }
-    
+
+    protected virtual void Start()
+    {
+        aSource = GetComponent<AudioSource>();
+        speed = speed + GameManager.Instance.Difficulty;
+    }
 
     protected abstract void Move();
 
     protected abstract void Attack();
 
     protected abstract void Die();
-
-    protected virtual void Start()
-    {
-        aSource = GetComponent<AudioSource>();
-    }
 
     public virtual void GetDamage(int damage)
     {
