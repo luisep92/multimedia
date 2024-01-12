@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class PauseController : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject btnGodMode;
     private bool isPaused = false;
     private bool playerWasDisabled = false;
 
@@ -36,6 +37,7 @@ public class PauseController : MonoBehaviour
             playerWasDisabled = Player.Instance.IsDisabled;
             isPaused = true;
             pausePanel.SetActive(true);
+            btnGodMode.SetActive(GameManager.Instance.Difficulty < 3);
             if (!playerWasDisabled)
                 Player.Instance.Disable();
             Time.timeScale = 0.0001f;

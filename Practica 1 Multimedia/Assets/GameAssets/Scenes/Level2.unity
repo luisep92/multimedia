@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2239030503577832201, guid: 31dff306425f78d46b9a2e710799c153, type: 3}
+      propertyPath: btnGodMode
+      value: 
+      objectReference: {fileID: 334042576}
     - target: {fileID: 5869825755179503308, guid: 31dff306425f78d46b9a2e710799c153, type: 3}
       propertyPath: m_Name
       value: LevelManager 2
@@ -424,6 +428,11 @@ PrefabInstance:
       addedObject: {fileID: 117443093}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31dff306425f78d46b9a2e710799c153, type: 3}
+--- !u!1 &334042576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5393575299976433403, guid: 31dff306425f78d46b9a2e710799c153, type: 3}
+  m_PrefabInstance: {fileID: 302750924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &509882947
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,22 +860,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
-      propertyPath: godMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
-      propertyPath: _godMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779309828481482769, guid: 65686e06c5a19b74292424e645567234, type: 3}
-      propertyPath: maxHealth
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7343078247680011831, guid: 65686e06c5a19b74292424e645567234, type: 3}
-      propertyPath: m_PreviewTimeScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7692386716270076206, guid: 65686e06c5a19b74292424e645567234, type: 3}
       propertyPath: m_Name
       value: Player

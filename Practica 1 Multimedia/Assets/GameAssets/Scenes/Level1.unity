@@ -578,6 +578,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2537960347011012743, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+      propertyPath: btnGodMode
+      value: 
+      objectReference: {fileID: 6378959948323705137}
     - target: {fileID: 3176177371162044934, guid: eee53528414250d4e90f1189f8c10123, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -671,6 +675,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+--- !u!1 &6378959948323705137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8571426739714104693, guid: eee53528414250d4e90f1189f8c10123, type: 3}
+  m_PrefabInstance: {fileID: 6378959948323705136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8591388253388518242
 PrefabInstance:
   m_ObjectHideFlags: 0
