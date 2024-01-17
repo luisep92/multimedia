@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] int health;
+    [SerializeField] TMP_Text healthText;
     [SerializeField] float jumpForce;
     public float speed;
     public TMP_Text countText;
@@ -15,9 +18,12 @@ public class PlayerController : MonoBehaviour
     private Light lig;
     private Renderer ren;
     private int count;
+    private Vector3 initPos;
 
     void Start()
     {
+        healthText.text = health.ToString();
+        initPos = transform.position;
         rb = GetComponent<Rigidbody>();
         lig = gameObject.GetComponent<Light>();
         ren = GetComponent<Renderer>();
@@ -28,9 +34,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.1f)
-        {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+
+        if (transform.position.y < -5f)
+            Fall();
     }
     void FixedUpdate()
     {
@@ -59,6 +66,7 @@ public class PlayerController : MonoBehaviour
             ChangeColor();
             SpawnParticle(collision);
             ChangeSize(collision);
+            ChangeWallSize(collision);
         }
     }
 
@@ -93,5 +101,26 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(scale - 0.2f, scale - 0.2f, scale - 0.2f);
         else if (scale < 1.4f && col.transform.rotation.y != 0)
             transform.localScale = new Vector3(scale + 0.2f, scale + 0.2f, scale + 0.2f);
+    }
+
+    private void ChangeWallSize(Collision col)
+    {
+        Transform t = col.transform;
+        float size = t.localScale.y;
+        if (size <= 2f)
+            return;
+        t.localScale = new Vector3(t.localScale.x, t.localScale.y - 1, t.localScale.z);
+        t.position = new Vector3(t.position.x, t.position.y - 0.5f, t.position.z);
+    }
+
+    private void Fall()
+    {
+        transform.position = initPos;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        health -= 1;
+        healthText.text = health.ToString();
+        if (health <= 0)
+            SceneManager.LoadScene("MainMenu");
     }
 }
