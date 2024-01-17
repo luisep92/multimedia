@@ -66,6 +66,7 @@
     <Compile Include="Assets\GameAssets\Scripts\MeshCombiner.cs" />
     <Compile Include="Assets\GameAssets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Rotator.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\PickUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

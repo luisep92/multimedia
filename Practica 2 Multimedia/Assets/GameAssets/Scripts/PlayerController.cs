@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     public float speed;
     public TMP_Text countText;
+    public GameObject hitParticle;
     public TMP_Text winText;
     private Rigidbody rb;
     private Light lig;
@@ -44,9 +45,7 @@ public class PlayerController : MonoBehaviour
         // Con la etiqueta Pick Up
         if (other.gameObject.CompareTag("PickUp"))
         {
-            // Lo desactiva haciéndolo desaparecer
-            other.gameObject.SetActive(false);
-            // Contamos uno más
+            other.GetComponent<PickUp>().OnPickUp();
             count = count + 1;
             SetCountText();
         }
@@ -57,11 +56,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            ren.material.EnableKeyword("_EMISSION");
-            Color c = new Color(Random.value, Random.value, Random.value);
-            ren.material.SetColor("_EmissionColor", c * 3);
-            ren.material.color = new Color(Random.value, Random.value, Random.value);
-            lig.color = c;
+            ChangeColor();
+            SpawnParticle(collision);
+            ChangeSize(collision);
         }
     }
 
@@ -72,5 +69,29 @@ public class PlayerController : MonoBehaviour
         {
             winText.text = "You Win!";
         }
+    }
+
+    private void ChangeColor()
+    {
+        ren.material.EnableKeyword("_EMISSION");
+        Color c = new Color(Random.value, Random.value, Random.value);
+        ren.material.SetColor("_EmissionColor", c * 3);
+        ren.material.color = new Color(Random.value, Random.value, Random.value);
+        lig.color = c;
+    }
+
+    private void SpawnParticle(Collision collision)
+    {
+        Quaternion rotation = collision.transform.rotation;
+        Destroy(Instantiate(hitParticle, collision.contacts[0].point, rotation), 3f);
+    }
+
+    private void ChangeSize(Collision col)
+    {
+        float scale = transform.localScale.x;
+        if (scale > 0.6f && col.transform.rotation.y == 0)
+            transform.localScale = new Vector3(scale - 0.2f, scale - 0.2f, scale - 0.2f);
+        else if (scale < 1.4f && col.transform.rotation.y != 0)
+            transform.localScale = new Vector3(scale + 0.2f, scale + 0.2f, scale + 0.2f);
     }
 }
