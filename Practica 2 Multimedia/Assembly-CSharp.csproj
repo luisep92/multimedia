@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\GameAssets\Scripts\CameraController.cs" />
     <Compile Include="Assets\GameAssets\Scripts\PostProcess.cs" />
+    <Compile Include="Assets\GameAssets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\GameAssets\Scripts\MeshCombiner.cs" />
     <Compile Include="Assets\GameAssets\Scripts\PlayerController.cs" />
