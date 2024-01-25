@@ -7,22 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] int health;
+    private enum Sounds { WIN = 0, LOSE = 1 }
+
     [SerializeField] TMP_Text healthText;
     [SerializeField] float jumpForce;
     public float speed;
     public TMP_Text countText;
     public GameObject hitParticle;
     public TMP_Text winText;
+    public AudioClip[] sounds;
     private Rigidbody rb;
     private Light lig;
     private Renderer ren;
     private int count;
     private Vector3 initPos;
     private bool canMove = true;
+    private int health;
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "RollABall")
+            GameManager.Instance.Health = 3;
+        health = GameManager.Instance.Health;
         healthText.text = health.ToString();
         initPos = transform.position;
         rb = GetComponent<Rigidbody>();
@@ -74,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        countText.text = "PickUps left: " + (12 - count).ToString();
         if (count >= 12)
         {
             StartCoroutine(Win());
@@ -120,19 +126,27 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Win()
     {
         winText.text = "You Win!";
+        winText.GetComponent<Animator>().Play("WinLoseText");
+        winText.color = Color.green;
+        GetComponent<AudioSource>().PlayOneShot(sounds[(int)Sounds.WIN]);
+        GameManager.Instance.Health = health;
         canMove = false;
         yield return new WaitForSeconds(5f);
         if (SceneManager.GetActiveScene().name == "Labyrinth")
-            SceneManager.LoadScene("MainMenu");
+            GameManager.Instance.LoadScene("MainMenu");
         else
-            SceneManager.LoadScene("Labyrinth");
+            GameManager.Instance.LoadScene("Labyrinth");
     }
 
     private IEnumerator Die()
     {
         winText.text = "You Lose!";
+        winText.color = Color.red;
+        winText.GetComponent<Animator>().Play("WinLoseText");
+        GetComponent<AudioSource>().PlayOneShot(sounds[(int)Sounds.LOSE]);
         canMove = false;
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.Health = 3;
+        GameManager.Instance.LoadScene("MainMenu");
     }
 }

@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField] Button playBtn;
     public void BtnPlay()
     {
-        SceneManager.LoadScene("RollABall");
+        playBtn.interactable = false;
+        GameManager.Instance.LoadScene("RollABall");
     }
 }
