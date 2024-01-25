@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Luis Escolano Piquer
+
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] Button playBtn;

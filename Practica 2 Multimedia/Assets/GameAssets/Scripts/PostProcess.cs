@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+// Luis Escolano Piquer
+
+// Manages bloom intensity, unused
 public class PostProcess : MonoBehaviour
 {
     private bool blinkBloom = false;

@@ -67,7 +67,6 @@
     <Compile Include="Assets\GameAssets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Cinematic.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\GameAssets\Scripts\MeshCombiner.cs" />
     <Compile Include="Assets\GameAssets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Wall.cs" />
     <Compile Include="Assets\GameAssets\Scripts\Rotator.cs" />

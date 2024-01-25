@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+
 public class Wall : MonoBehaviour
 {
     Transform player;
@@ -17,12 +19,6 @@ public class Wall : MonoBehaviour
         ren = GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-
-    }
 
     private void OnCollisionEnter(Collision collision)
     {

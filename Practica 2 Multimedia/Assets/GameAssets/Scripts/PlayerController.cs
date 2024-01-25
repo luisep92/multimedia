@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
+// Luis Escolano Piquer
+
 public class PlayerController : MonoBehaviour
 {
     private enum Sounds { WIN = 0, LOSE = 1 }
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
         SetCountText();
         winText.text = "";
     }
+
+    // Jump, fall
     private void Update()
     {
         if (canMove && Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.1f)
@@ -46,6 +50,8 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < -5f)
             Fall();
     }
+
+    // Move
     void FixedUpdate()
     {
         if (canMove)
@@ -57,6 +63,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Get pick up
     void OnTriggerEnter(Collider other)
     {
         // Con la etiqueta Pick Up
@@ -69,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Hit wall.
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
@@ -87,6 +95,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Change color of material and light
     private void ChangeColor()
     {
         ren.material.EnableKeyword("_EMISSION");
@@ -103,7 +112,7 @@ public class PlayerController : MonoBehaviour
         Destroy(Instantiate(hitParticle, collision.contacts[0].point, rotation), 3f);
     }
 
-
+    // Reset position on fall
     private void Fall()
     {
         transform.position = initPos;

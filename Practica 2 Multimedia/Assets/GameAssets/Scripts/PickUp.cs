@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Luis Escolano Piquer
+
 public class PickUp : MonoBehaviour
 {
     [SerializeField] GameObject particle;
@@ -21,6 +23,7 @@ public class PickUp : MonoBehaviour
         StartCoroutine(ChangeColorOnTime(5f));
     }
 
+    // Set color green, disable collision, disable particle, spawn particle
     public void OnPickUp()
     {
         if (hassBeenPicked)

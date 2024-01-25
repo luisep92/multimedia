@@ -4,6 +4,8 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+// Luis Escolano Piquer
+
 public class Enemy : MonoBehaviour
 {
     private enum Target { WAYPOINT, PLAYER }
@@ -18,6 +20,7 @@ public class Enemy : MonoBehaviour
     private Transform player;
     private Target _targ = Target.WAYPOINT;
 
+    // Sound when target player and change color of light
     private Target targ
     {
         get => _targ;
@@ -51,7 +54,7 @@ public class Enemy : MonoBehaviour
         waypoints = _waypoints.Select(w => w.position).ToArray();
     }
 
-    // Update is called once per frame
+    // Move through waypoints, detect and target player if its near. If player goes far again, return to waypoint iteration.
     void Update()
     {
         Vector3 target;
@@ -83,7 +86,7 @@ public class Enemy : MonoBehaviour
             nextWaypoint++;
     }
 
-
+    // Explode, hurt player.
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -108,6 +111,7 @@ public class Enemy : MonoBehaviour
         Destroy(Instantiate(dieParticle, pos, Quaternion.identity), 3f);
     }
 
+    // Get color of light depending target.
     private Color LightColor(Target target)
     {
         return target == Target.PLAYER ? Color.red : Color.yellow;

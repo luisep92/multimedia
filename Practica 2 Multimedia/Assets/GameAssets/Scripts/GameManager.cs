@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Luis Escolano Piquer
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int Health = 3;
     [SerializeField] Image fade;
 
+    // Singleton
     private void Awake()
     {
         if (Instance != null)
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    // Fade, load scene
     public void LoadScene(string name)
     {
         StartCoroutine(ChangeScene(name));
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeOut());
     }
 
+    // Leave scene fading
     private IEnumerator ChangeScene(string name, float duration = 1)
     {
         StartCoroutine(FadeIn());
