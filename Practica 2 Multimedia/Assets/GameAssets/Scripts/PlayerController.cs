@@ -149,4 +149,14 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.Health = 3;
         GameManager.Instance.LoadScene("MainMenu");
     }
+
+    public void Disable()
+    {
+        canMove = false;
+    }
+
+    public void Enable()
+    {
+        canMove = true;
+    }
 }

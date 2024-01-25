@@ -136,6 +136,7 @@ MonoBehaviour:
   layerPlayer:
     serializedVersion: 2
     m_Bits: 0
+  lantern: {fileID: 3030121717551075911}
 --- !u!54 &6417753158905674226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -365,7 +366,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_Intensity: 38.64
   m_Range: 4.04
   m_SpotAngle: 68.95293

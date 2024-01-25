@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float detectPlayerDistance;
     [SerializeField] LayerMask layerPlayer;
+    [SerializeField] Light lantern;
     private Vector3[] waypoints;  // Get position of waypoints at the beggining, so waypoints can be child of enemy
     private int _nextWaypoint = 0;
     private Transform player;
@@ -22,8 +23,12 @@ public class Enemy : MonoBehaviour
         get => _targ;
         set
         {
-            if (_targ == Target.WAYPOINT && value == Target.PLAYER)
-                GetComponent<AudioSource>().Play();
+            if (_targ != value)
+            {
+                lantern.color = LightColor(value);
+                if(value == Target.PLAYER)
+                    GetComponent<AudioSource>().Play();
+            }
             _targ = value;
         }
     }
@@ -101,5 +106,10 @@ public class Enemy : MonoBehaviour
         Vector3 pos = transform.position;
         pos.y -= transform.localScale.y / 2f;
         Destroy(Instantiate(dieParticle, pos, Quaternion.identity), 3f);
+    }
+
+    private Color LightColor(Target target)
+    {
+        return target == Target.PLAYER ? Color.red : Color.yellow;
     }
 }
