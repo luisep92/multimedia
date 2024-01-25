@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private enum Target { WAYPOINT, PLAYER }
     [SerializeField] GameObject dieParticle;
     [SerializeField] Transform[] _waypoints;
     [SerializeField] float speed;
@@ -14,7 +15,18 @@ public class Enemy : MonoBehaviour
     private Vector3[] waypoints;  // Get position of waypoints at the beggining, so waypoints can be child of enemy
     private int _nextWaypoint = 0;
     private Transform player;
+    private Target _targ = Target.WAYPOINT;
 
+    private Target targ
+    {
+        get => _targ;
+        set
+        {
+            if (_targ == Target.WAYPOINT && value == Target.PLAYER)
+                GetComponent<AudioSource>().Play();
+            _targ = value;
+        }
+    }
 
     private int nextWaypoint
     {
@@ -44,13 +56,22 @@ public class Enemy : MonoBehaviour
             Vector3 vecToPlayer = player.position - transform.position;
             RaycastHit hit;
             if (Physics.Raycast(transform.position, vecToPlayer, out hit, detectPlayerDistance) && hit.collider.CompareTag("Player"))
+            {
                 target = playerPos;
+                targ = Target.PLAYER;
+            }
             else
+            {
                 target = waypoints[nextWaypoint];
+                targ = Target.WAYPOINT;
+            }
+           
         }
         else
+        {
             target = waypoints[nextWaypoint];
-
+            targ = Target.WAYPOINT;
+        }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         transform.LookAt(target);
         if (Vector3.Distance(transform.position, waypoints[nextWaypoint]) < 0.2f)
