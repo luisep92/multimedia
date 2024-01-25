@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Renderer ren;
     private int count;
     private Vector3 initPos;
+    private bool canMove = true;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.1f)
+        if (canMove && Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.1f)
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
         if (transform.position.y < -5f)
@@ -41,10 +42,13 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rb.AddForce(movement * speed);
+        if (canMove)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            rb.AddForce(movement * speed);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -65,8 +69,6 @@ public class PlayerController : MonoBehaviour
         {
             ChangeColor();
             SpawnParticle(collision);
-            ChangeSize(collision);
-            ChangeWallSize(collision);
         }
     }
 
@@ -75,7 +77,7 @@ public class PlayerController : MonoBehaviour
         countText.text = "Count: " + count.ToString();
         if (count >= 12)
         {
-            winText.text = "You Win!";
+            StartCoroutine(Win());
         }
     }
 
@@ -90,37 +92,47 @@ public class PlayerController : MonoBehaviour
 
     private void SpawnParticle(Collision collision)
     {
-        Quaternion rotation = collision.transform.rotation;
+        Vector3 collisionNormal = collision.contacts[0].normal;
+        Quaternion rotation = Quaternion.LookRotation(collisionNormal);
         Destroy(Instantiate(hitParticle, collision.contacts[0].point, rotation), 3f);
     }
 
-    private void ChangeSize(Collision col)
-    {
-        float scale = transform.localScale.x;
-        if (scale > 0.6f && col.transform.rotation.y == 0)
-            transform.localScale = new Vector3(scale - 0.2f, scale - 0.2f, scale - 0.2f);
-        else if (scale < 1.4f && col.transform.rotation.y != 0)
-            transform.localScale = new Vector3(scale + 0.2f, scale + 0.2f, scale + 0.2f);
-    }
-
-    private void ChangeWallSize(Collision col)
-    {
-        Transform t = col.transform;
-        float size = t.localScale.y;
-        if (size <= 2f)
-            return;
-        t.localScale = new Vector3(t.localScale.x, t.localScale.y - 1, t.localScale.z);
-        t.position = new Vector3(t.position.x, t.position.y - 0.5f, t.position.z);
-    }
 
     private void Fall()
     {
         transform.position = initPos;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        health -= 1;
+        GetDamage(1);
+    }
+
+    public void GetDamage(int quantity)
+    {
+        health -= quantity;
+        if(health <= 0)
+        {
+            health = 0;
+            StartCoroutine(Die());
+        }
         healthText.text = health.ToString();
-        if (health <= 0)
+    }
+
+    private IEnumerator Win()
+    {
+        winText.text = "You Win!";
+        canMove = false;
+        yield return new WaitForSeconds(5f);
+        if (SceneManager.GetActiveScene().name == "Labyrinth")
             SceneManager.LoadScene("MainMenu");
+        else
+            SceneManager.LoadScene("Labyrinth");
+    }
+
+    private IEnumerator Die()
+    {
+        winText.text = "You Lose!";
+        canMove = false;
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

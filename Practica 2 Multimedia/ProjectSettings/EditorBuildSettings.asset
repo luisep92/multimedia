@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameAssets/Scenes/RollABall.unity
     guid: 080d8b8c12ff4474bb2b7bf77588d094
+  - enabled: 1
+    path: Assets/GameAssets/Scenes/Labyrinth.unity
+    guid: a64af3c549f36c7488b8a5e57f41495c
   m_configObjects: {}

@@ -27,6 +27,7 @@ public class PickUp : MonoBehaviour
             return;
         ChangeColor(Color.green);
         GetComponent<Rotator>().enabled = false;
+        GetComponent<Collider>().enabled = false;
         particle.SetActive(false);
         hassBeenPicked = true;
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
